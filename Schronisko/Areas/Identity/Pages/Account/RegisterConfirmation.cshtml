@@ -1,0 +1,23 @@
+﻿@page
+@model RegisterConfirmationModel
+@{
+    ViewData["Title"] = "Potwierdzenie rejestracji";
+}
+
+<h1>@ViewData["Title"]</h1>
+@{
+    if (@Model.DisplayConfirmAccountLink)
+    {
+<p>
+    Aplikacja nie ma skonfigurowanej wysyłki email.
+    Treść maila powinna wyglądać następująco: <a id="confirm-link" href="@Model.EmailConfirmationUrl">Kliknij link, aby potwierdzić rejestrację użytkownika</a>
+</p>
+    }
+    else
+    {
+<p>
+        Wysłano mail z potwierdzeniem rejestracji i linkiem do aktywacji konta.
+</p>
+    }
+}
+

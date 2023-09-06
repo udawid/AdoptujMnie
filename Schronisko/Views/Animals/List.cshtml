@@ -1,0 +1,83 @@
+﻿@model AnimalsViewModel
+
+@{
+    ViewData["Title"] = "Lista Zwierząt";
+}
+
+<h1>Zwierzęta</h1>
+<div class="container">
+    <div class="row">
+
+        <!-- Wyszukiwarka -->
+        <div class="d-none d-md-block col-md-12 col-xl-3">
+            <div class="card mt-2 shadow-sm ">
+                <div class="card-body">
+                    @using (Html.BeginForm("List", "Animals", new {PageNumber = "1"}, FormMethod.Get))
+                    {
+                        <div class="row gt-3">
+                            <div class="form-group col-auto">
+                                <label for="AnimalType">Typ zwierzęcia:</label>
+                                @Html.DropDownList("AnimalType",ViewBag.AnimalType, "--- wszystkie ---", htmlAttributes: new { @class = "form-control" })
+                            </div>
+
+                            <div class="form-group col-auto">
+                                <label for="Status">Status:</label>
+                                @Html.DropDownList("Status", ViewBag.Status, "--- wszystkie ---", htmlAttributes: new { @class = "form-control" })
+                            </div>
+
+                            <div class="form-group col-auto">
+                                <label for="Phrase">Fragment tekstu:</label>
+                                <input type="text" class="form-control" id="Phrase" name="Phrase" placeholder="Szukany ciąg" value="@Model.AnimalsView?.Phrase">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary mt-4 col-auto">Filtruj</button>
+                    
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Lista zwierząt -->
+        <div class="col-xl-9">
+            <!-- pętla -->
+            @if (Model.AnimalsView.TextCount > 0)
+            {
+                @foreach (var item in Model.Animals)
+                {
+                    <div class="card mt-2">
+                        <div class="card-header">
+                            <h4 class="text-primary oswald">@item.Status</h4>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="~/graphic/Animals/@item.Photo" class="img-fluid" alt="..." />
+                                @*                        ~/graphic/Animals/1.jpg
+                                *@                    </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title text-success">@item.Name</h5>
+                                    <p class="card-text fst-italic">@item.Description</p>
+                                    <p class="card-text"><small class="text-muted"> 
+                                            Opublikowano: @item.AddedDate</small></p>
+                                    <div class="position-relative">
+                                        <a href="@Url.Action("Details", "Animals", new{id = item.AnimalID})" class="btn btn-outline-primary position-absolute bottom-0 end-0">Czytaj >>></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                }
+            }
+            else 
+                    {
+                        <div class="alert alert-info d-flex align-items-center mt-2" role="alert">
+                        <i class="bi bi-info-circle-fill me-3"></i>Brak zwierząt do wyświetlenia. Zmień parametry filtrowania lub poszukiwany ciąg.
+                        </div>
+                    }
+        </div>
+
+    </div>
+</div>

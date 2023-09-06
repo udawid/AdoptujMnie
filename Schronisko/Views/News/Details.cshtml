@@ -1,0 +1,80 @@
+﻿@model Schronisko.Models.News
+
+@{
+    ViewData["Title"] = "Details";
+}
+<article>
+    <h1 class="oswald text-primary text-center">@Model.Title</h1>
+</article>
+<div class="row">
+    <section class="col-lg-3 mt-3">
+        <div class="row">
+            <div class="col-6 col-lg-12">
+                <h6><i class="bi bi-calendar-event me-1">Opublikowano:</i>@Model.AddedDate.ToString("dd MMMM yyyy")</h6>
+            </div>
+        </div>
+    </section>
+    <!--Zdjęcie i treść-->
+    <section class="col-lg-9">
+        @{
+            if (!String.IsNullOrEmpty(Model.Photo))
+            {
+            <img class="img-fluid mt-3" src="~/graphic/News/@Model.Photo">
+            }
+            else
+            {
+            <hr />
+            }
+        }
+        <hr />
+            @Html.Raw(Model.NewsText)
+        <hr />
+    </section>
+</div>
+@*
+<div>
+    <h4>Aktualności</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2 interspace">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NewsText)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NewsText)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.User.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Photo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Photo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AddedDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AddedDate)
+        </dd>
+    </dl>
+</div>*@
+<div>
+    @*<a asp-action="Edit" class="btn btn-warning" asp-route-id="@Model?.NewsID">Edycja</a> |*@
+    <a asp-action="List" class="btn btn-light"> Powrót</a>
+</div>

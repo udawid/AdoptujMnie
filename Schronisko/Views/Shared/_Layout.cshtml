@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AdoptujMnie</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/css/bootstrap_colors.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.13.2/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="~/css/site.css" asp-append-version="true" />
+    @*<link rel="stylesheet" href="~/Schronisko.styles.css" asp-append-version="true" />*@
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Jost:wght@100;200;300;400;500;600;700;800;900&family=Montserrat:wght@400;700&family=Oswald:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+</head>
+<body>
+    <!-- NAVBAR -->
+    <header>
+      <a href="#" class="logo"><img src="~/graphic/img/logo.png" /></a>
+      <div class="bx bx-menu" id="menu-icon"></div>
+      <ul class="navlist">
+        <li><a href="~/#home">Home</a></li>
+        <li><a href="~/#about">About</a></li>
+        <li><a href="~/#adopcja">Adopcja</a></li>
+        <li><a href="~/#service">Service</a></li>
+        <li><a href="~/#contact">Kontakt</a></li>
+      </ul>
+      <div class="button-container">
+        <partial name="_LoginPartial" />
+@*        <a href="#" class="top-btn">Login</a>
+        <a href="#" class="top-btn">Zarejestruj</a>*@
+      </div>
+      
+    </header>
+@*    <div class="container">
+        <main role="main" class="pb-3">*@
+            @RenderBody()
+@*        </main>
+    </div>*@
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - Schronisko - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

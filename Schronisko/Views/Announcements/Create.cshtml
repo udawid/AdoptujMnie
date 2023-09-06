@@ -1,0 +1,107 @@
+﻿@model Schronisko.Models.Announcement
+
+@{
+    ViewData["Title"] = "Create";
+    var newFileName = "";
+    var imagePath = "";
+}
+
+<h1 class="text-primary oswald">Stwórz ogłoszenie</h1>
+
+@{
+    if (!String.IsNullOrEmpty(ViewBag.ErrorMessage))
+    {
+        <div class="alert alert-danger" role="alert"> @ViewBag.ErrorMessage </div>
+    }
+}
+
+@*@{  WebImage photo = null;
+
+
+    if(IsPost){
+        photo = WebImage.GetImageFromRequest();
+        if(photo != null){
+            newFileName = Guid.NewGuid().ToString() + "_" +
+                Path.GetFileName(photo.FileName);
+            imagePath = @"images\" + newFileName;
+
+            photo.Save(@"~\" + imagePath);
+        }
+    }
+}*@
+
+<h4 class="text-success"><b>Ogłoszenia</b></h4>
+<hr />
+<div class="row">
+    <div class="col-md-4 interspace">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnnouncementText" class="control-label"></label>
+                <textarea asp-for="AnnouncementText" class="form-control"></textarea>
+                <span asp-validation-for="AnnouncementText" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Type" class="control-label"></label>
+                <input asp-for="Type" class="form-control" />
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <select asp-for="Id" class ="form-control" asp-items="ViewBag.Id"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Photo" class="control-label"></label>
+                <input asp-for="Photo" type="file" class="form-control"/>
+                <span asp-validation-for="Photo" class="text-danger"></span>
+                @if (imagePath != "")
+                {
+                    <div class="result">
+                        <img src="@imagePath" alt="Photo" />
+
+                    </div>
+                }
+                @*<form action="" method="post" enctype="multipart/form-data">
+                <fieldset>
+                  <legend> Upload Image </legend>
+                  <label asp-for="Photo">Image</label>
+                  <input type="file" name="Image" />
+                  <br/>
+                  <input type="submit" value="Upload" />
+                </fieldset>
+              </form>
+              <h1>Uploaded Image</h1>*@
+                @*                @if(imagePath != ""){
+                <div class="result">
+                    <img src="@imagePath" alt="Photo" />
+
+                </div>
+                }*@
+            </div>
+            <div class="form-group">
+                <label asp-for="AddedDate" class="control-label"></label>
+                <input asp-for="AddedDate" class="form-control" />
+                <span asp-validation-for="AddedDate" class="text-danger"></span>
+            </div>
+                <div class="form-group">
+                    <input type="submit" value="Dodaj" class="btn btn-primary" />
+                    <a asp-action="Index" class="btn btn-light"> Powrót </a>
+                </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
