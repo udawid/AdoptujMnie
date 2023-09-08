@@ -38,75 +38,98 @@
         </p>
       </div>
     </section>
-    <!--------portfolio---->
+    <!--------Adopcja---->
 	<section class="adopcja" id="adopcja">
 		<div class="heading">
-			<h3>Adopcja</h3>
-			<h2>Lorem Ipsum</h2>
-			<p>Lorem ipsum <br> ....</p>
+			<h3>Aktualności</h3>
+			<h2>Wszystko o schronisku</h2>
+			<p>Najważniejsze aktualności <br>z naszego schroniska</p>
 		</div>
-
 		<div class="adopcja-content">
+		@foreach (var item in Model.DisplayNews)
+        {
 			<div class="col">
-				<img src="~/graphic/img/2.png">
+				<img src="~/graphic/News/@item.Photo">
 				<div class="layer">
-					<h3>Pimpek</h3>
-					<h5>Młody pies</h5>
+					<h3>@item.Title</h3>
+					<h5>@item.NewsText</h5>
 				</div>
 			</div>
-
-			<div class="col">
-				<img src="~/graphic/img/2.png">
-				<div class="layer">
-					<h3>Pimpek</h3>
-					<h5>Młody pies</h5>
-				</div>
-			</div>
-
-			<div class="col">
-				<img src="~/graphic/img/2.png">
-				<div class="layer">
-					<h3>Pimpek</h3>
-					<h5>Młody pies</h5>
-				</div>
-			</div>
-
-			<div class="col">
-				<img src="~/graphic/img/2.png">
-				<div class="layer">
-					<h3>Pimpek</h3>
-					<h5>Młody pies</h5>
-				</div>
-			</div>
-
-			<div class="col">
-				<img src="~/graphic/img/2.png">
-				<div class="layer">
-					<h3>Pimpek</h3>
-					<h5>Młody pies</h5>
-				</div>
-			</div>
-
-			<div class="col">
-				<img src="~/graphic/img/2.png">
-				<div class="layer">
-					<h3>Pimpek</h3>
-					<h5>Młody pies</h5>
-				</div>
-			</div>
-
+        }
 		</div>
+		<center><a asp-controller="News" asp-action="List" class="btn btn-all">Zobacz wszystkie!</a></center>
+		@*<div class="adopcja-content">
+			<div class="col">
+				<img src="~/graphic/img/2.png">
+				<div class="layer">
+					<h3>Pimpek</h3>
+					<h5>Młody pies</h5>
+				</div>
+			</div>
+
+			<div class="col">
+				<img src="~/graphic/img/2.png">
+				<div class="layer">
+					<h3>Pimpek</h3>
+					<h5>Młody pies</h5>
+				</div>
+			</div>
+
+			<div class="col">
+				<img src="~/graphic/img/2.png">
+				<div class="layer">
+					<h3>Pimpek</h3>
+					<h5>Młody pies</h5>
+				</div>
+			</div>
+
+			<div class="col">
+				<img src="~/graphic/img/2.png">
+				<div class="layer">
+					<h3>Pimpek</h3>
+					<h5>Młody pies</h5>
+				</div>
+			</div>
+
+			<div class="col">
+				<img src="~/graphic/img/2.png">
+				<div class="layer">
+					<h3>Pimpek</h3>
+					<h5>Młody pies</h5>
+				</div>
+			</div>
+
+			<div class="col">
+				<img src="~/graphic/img/2.png">
+				<div class="layer">
+					<h3>Pimpek</h3>
+					<h5>Młody pies</h5>
+				</div>
+			</div>
+
+		</div>*@
 	</section>
 
-	<!--------service---->
+	<!--------Ogłoszenia---->
 	<section class="service" id="service">
 		<div class="heading">
 			<h3>Ogłoszenia</h3>
 			<h2>Zgubiono | Znaleziono</h2>
 			<p>Lorem ipsum <br> ....</p>
 		</div>
-
-		<div class="service-content">
+        <div class="service-content">
+		@foreach (var item in Model.DisplayAnnouncements)
+        {
+            <div class="row r">
+		    <img src="~/graphic/Announcement/@item.Photo">
+			<h3>ZGUBIONO</h3>
+			<h5>Data dodania: <span>@item.AddedDate</span></h5>
+			<p>@item.AnnouncementText</p>
+		    </div>
+        }
+        </div>
+		<center><a asp-controller="Announcements" asp-action="List" class="btn btn-all">Zobacz wszystkie!</a></center>
+		@*<div class="service-content">
 			<div class="row r">
 					<img src="~/graphic/img/4.png">
 				<h3>ZGUBIONO</h3>
@@ -135,10 +158,10 @@
 				<p>Zgubił nam się piesek</p>
 			</div>
 
-		</div>
+		</div>*@
 	</section>
 
-	<!--------work---->
+	<!--------SchroniskoWLiczbach---->
 	<section class="cta">
 		<div class="heading">
 			<h2>Schronisko w <br> liczbach</h2>
@@ -163,7 +186,7 @@
 		</div>
 	</section>
 
-	<!--------contact---->
+	<!--------Kontakt---->
 	<section class="contact" id="contact">
 		<div class="container">
 			<div class="center">

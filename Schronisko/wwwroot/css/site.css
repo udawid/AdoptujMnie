@@ -49,6 +49,7 @@ header {
 
     .navlist li {
         position: relative;
+        display: inline-block;
     }
 
     .navlist a {
@@ -101,8 +102,11 @@ header {
         color: var(--bg-color);
     }
 
-section {
-    padding: 100px 18%;
+.container-body {
+    padding:100px 18%;
+}
+section{
+    margin-bottom: 100px;
 }
 
 .home {
@@ -117,6 +121,7 @@ section {
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
     gap: 4rem;
+    margin-top: -100px;
 }
 
 .home-text h1 {
@@ -184,7 +189,9 @@ span {
     .btn:hover {
         transform: scale(1.1);
     }
-
+.btn-all {
+    margin-top: 50px;
+}
 .home-img img {
     max-width: 100%;
     width: 540px;
@@ -299,7 +306,9 @@ header.sticky {
         color: var(--secound-color);
         line-height: 28px;
     }
-
+.adopcja a {
+    margin: 0 auto;
+}
 .adopcja-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, auto));
@@ -351,7 +360,7 @@ header.sticky {
     }
 
     .layer:hover h3 {
-        bottom: 52%;
+        bottom: 75%;
         opacity: 1;
     }
 
@@ -375,7 +384,8 @@ header.sticky {
 
 .service-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, auto));
+    grid-template-columns: repeat(3, 1fr);
+    /*grid-template-columns: repeat(auto-fit, minmax(400px, auto));*/
     gap: 2rem;
     align-items: center;
     margin-top: 5rem;

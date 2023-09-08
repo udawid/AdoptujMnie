@@ -4,5 +4,6 @@
     {
         public IEnumerable<Announcement>? DisplayAnnouncements { get; set; }
         public IEnumerable<News>? DisplayNews { get; set; }
+
     }
 }

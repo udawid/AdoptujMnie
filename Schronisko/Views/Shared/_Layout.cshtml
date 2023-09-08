@@ -26,12 +26,50 @@
       <a href="#" class="logo"><img src="~/graphic/img/logo.png" /></a>
       <div class="bx bx-menu" id="menu-icon"></div>
       <ul class="navlist">
-        <li><a href="~/#home">Home</a></li>
-        <li><a href="~/#about">About</a></li>
-        <li><a href="~/#adopcja">Adopcja</a></li>
-        <li><a href="~/#service">Service</a></li>
+        <li><a href="~/#home">Adoptuj</a></li>
+        <li><a href="~/#about">O nas!</a></li>
+        <li><a href="~/#adopcja">Aktualności</a></li>
+        <li><a href="~/#service">Ogłoszenia</a></li>
         <li><a href="~/#contact">Kontakt</a></li>
+          @{
+                            if(Context.User.IsInRole("admin"))
+                                {
+                                    <li class="nav-item dropdown">
+                                    <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Administracja
+                                    </a>
+                                    <ul class="dropdown-menu">  
+                                        <li class="nav-item">
+                                            <a class="dropdown-item nav-link text-dark" asp-area="" asp-controller="Announcements" asp-action="Index">Ogłoszenia</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="dropdown-item nav-link text-dark" asp-area="" asp-controller="News" asp-action="Index">Aktualności</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="dropdown-item nav-link text-dark" asp-area="" asp-controller="Animals" asp-action="Index">Zwierzęta</a>
+                                        </li>
+                                    </ul>
+                                    </li>
+                                }
+                          }
+                           @{
+                            if (User.IsInRole("opiekun"))
+                            {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Administracja </a>
+                                <ul class="dropdown-menu"> 
+                                    <li class="nav-item">
+                                        <a class="dropdown-item nav-link text-dark" asp-area="" asp-controller="Animals" asp-action="Index">Zwierzęta</a>
+                                    </li>
+                                </ul>
+                             </li> 
+                             }
+                         }
       </ul>
+@*                          <form method="get" class="d-flex" role="search" asp-controller="Animals" asp-action="List" asp-route-PageNumber="1">
+                        <input class="form-control me-2" type="search" id="Phrase" name="Phrase" placeholder="Szukany ciąg" aria-label="Search">
+                        <button class="btn btn btn-primary" type="submit">Szukaj</button>
+                    </form>*@
       <div class="button-container">
         <partial name="_LoginPartial" />
 @*        <a href="#" class="top-btn">Login</a>
@@ -40,10 +78,13 @@
       
     </header>
 @*    <div class="container">
-        <main role="main" class="pb-3">*@
+*@       
+        <div class="container-body">
+        <main role="main" class="pb-3">
             @RenderBody()
-@*        </main>
-    </div>*@
+       </main>
+       </div>
+   @* </div>*@
 
     <footer class="border-top footer text-muted">
         <div class="container">
