@@ -1,0 +1,170 @@
+﻿@model Schronisko.Models.UserForm
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 class="text-primary oswald">Szczegóły</h1>
+    
+<h4 class="text-success"><b>Ankieta</b></h4>
+<hr />
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FormType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FormType.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Active)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AddedDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AddedDate)
+        </dd>
+    </dl>
+</div>
+
+
+<h4 class="text-success"><b>Pytania</b></h4>
+<hr />
+
+
+@foreach (var item in Model.Questions.OrderBy(q => q.QuestionOrder))
+{
+    <table class="table" id="pytania">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Questions.First().QuestionOrder)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Questions.First().QuestionText)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Questions.First().Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Questions.First().UserFormQuestionTypeID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Questions.First().AddedDate)
+                </th>
+                <th></th>
+    
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.QuestionOrder)
+                    </td>
+                    <td>
+                        @if (item.QuestionText.Length <= 75)
+                        {
+                            @Html.DisplayFor(modelItem => item.QuestionText)
+                        }
+                        else
+                        {
+                            @(item.QuestionText.Substring(0, 75) + "...")
+                        }
+                    </td>
+                    <td>
+                        @if (item.Description.Length <= 75)
+                        {
+                            @Html.DisplayFor(modelItem => item.Description)
+                        }
+                        else
+                        {
+                            @(item.Description.Substring(0, 75) + "...")
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.QuestionType.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AddedDate)
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td colspan="3">
+                    <table class="table" id="opcje">
+                        <thead>
+                            <tr>
+                                <th>
+                                        @Html.DisplayNameFor(model => model.Questions.First().Options.First().OptionOrder)
+                                </th>
+                                <th>
+                                        @Html.DisplayNameFor(model => model.Questions.First().Options.First().OptionText)
+                                </th>
+                                <th>
+                                        @Html.DisplayNameFor(model => model.Questions.First().Options.First().AddedDate)
+                                </th>
+                                <th></th>
+    
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item2 in item.Options.OrderBy(q => q.OptionOrder))
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item2.OptionOrder)
+                                    </td>
+                                    <td>
+                                        @if (item2.OptionText.Length <= 75)
+                                        {
+                                            @Html.DisplayFor(modelItem => item2.OptionText)
+                                        }
+                                        else
+                                        {
+                                            @(item2.OptionText.Substring(0, 75) + "...")
+                                        }
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.AddedDate)
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+    <hr />
+}
+
+
+<div>
+    <a asp-action="Index" class="btn btn-light">Powrót do listy</a>
+</div>

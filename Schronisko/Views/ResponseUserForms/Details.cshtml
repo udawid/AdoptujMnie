@@ -1,0 +1,102 @@
+﻿@model Schronisko.Models.ResponseUserForm
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 class="text-primary oswald">@Model.Title</h1>
+
+@*<h4 class="text-success"><b>@Model.Description</b></h4>
+<hr />*@
+
+<div>
+    @*@foreach (var item in Model.ResponseQuestions.OrderBy(q => q.QuestionOrder))*@
+    @*@for (var item in Model.ResponseQuestions.OrderBy(q => q.QuestionOrder))*@
+    {
+            @*<h4 class="text-success"><b>@item.QuestionText</b></h4>*@
+            @*@foreach(var answer in item.ResponseOptions)*@
+            {
+                    @*@Html.RadioButtonFor(m => m.ResponseQuestions[0].ResponseOptions, answer.ResponseUserFormQuestionOptionID, new { id = answer.ResponseUserFormQuestionOptionID})*@
+                    @*<label for="@answer.ResponseUserFormQuestionOptionID">@answer.OptionText</label>*@
+            }
+            <hr />
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AddedDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AddedDate)
+        </dd>
+    </dl>
+    }
+</div>
+
+
+
+
+<h1>Details</h1>
+
+<div>
+    <h4>ResponseUserForm</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.UserFormTypeID)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.UserFormTypeID)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.User.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AddedDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AddedDate)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.ResponseUserFormID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

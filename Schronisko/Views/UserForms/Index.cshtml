@@ -1,0 +1,116 @@
+﻿@model IEnumerable<Schronisko.Models.UserForm>
+
+@{
+    ViewData["Title"] = "Lista ankiet";
+}
+
+<h1 class="oswald text-primary">
+    Ankiety
+</h1>
+
+
+<a class="btn btn-outline-success rounded-circle my-1" title="Dodaj ankietę" asp-action="Create"><i class="bi-clipboard2-plus-fill" aria-label="Dodaj ankietę"></i></a>
+
+@*<p>
+    <a asp-action="Create" class="btn btn-warning">Dodaj ankietę</a>
+</p>*@
+<table class="table" id="ankiety">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th width="175">
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserFormTypeID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Active)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddedDate)
+            </th>
+            <th></th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @if (item.Description.Length <= 75)
+                    {
+                        @Html.DisplayFor(modelItem => item.Description)
+                    }
+                    else
+                    {
+                        @(item.Description.Substring(0, 75) + "...")
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FormType.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Active)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddedDate)
+                </td>
+                <td>
+                    <a class="btn btn-outline-warning rounded-circle my-1" title="Edytuj" asp-action="Edit" asp-route-id="@item.UserFormID"><i class="bi-pencil" aria-label="Edycja"></i></a>
+                    <a class="btn btn-outline-primary rounded-circle my-1" title="Szczegóły" asp-action="Details" asp-route-id="@item.UserFormID"><i class="bi-info-circle" aria-label="Szczegóły"></i></a>
+                    @*<a class="btn btn-outline-success rounded-circle my-1" title="Podgląd" asp-action="Preview" asp-route-id="@item.UserFormID"><i class="bi-eye" aria-label="Podgląd"></i></a>*@
+                    <a class="btn btn-outline-info rounded-circle my-1" title="Wyniki" asp-action="Details" asp-route-id="@item.UserFormID"><i class="bi-clipboard-data" aria-label="Wyniki"></i></a>
+                    <a class="btn btn-outline-danger rounded-circle my-1" title="Usuń" asp-action="Delete" asp-route-id="@item.UserFormID"><i class="bi-x-circle" aria-label="Usuń"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts
+    {
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.13.2/datatables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#ankiety').DataTable({
+                language: {
+                    "decimal": "",
+                    "emptyTable": "Brak danych do wyświetlenia",
+                    "info": " Pozycje od _START_ do _END_ z _TOTAL_ rekordów",
+                    "infoEmpty": "Pozycji 0 z 0 dostępnych",
+                    "infoFiltered": "(filtrowanie z _MAX_ dostępnych pozycji)",
+                    "infoPostFix": "",
+                    "thousands": " ",
+                    "lengthMenu": "Pokaż _MENU_ pozycji",
+                    "loadingRecords": "Ładowanie...",
+                    "processing": "Przetwarzanie...",
+                    "search": "Wyszukaj:",
+                    "zeroRecords": "Nie znaleziono danych",
+                    "paginate": {
+                        "first": "Pierwsza",
+                        "last": "Ostatnia",
+                        "next": "Następna",
+                        "previous": "Poprzednia"
+                    },
+                    "aria": {
+                        "sortAscending": ": sortuje kolumnę rosnąco",
+                        "sortDescending": ": sortuje kolumnę malejąco"
+                    }
+                }
+            });
+        });
+    </script>
+
+}

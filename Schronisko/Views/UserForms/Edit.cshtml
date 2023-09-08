@@ -1,0 +1,195 @@
+﻿@model Schronisko.Models.UserForm
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+
+<h1 class="text-primary oswald">Edycja ankiety</h1>
+
+<h4 class="text-success"><b>Dane ankiety</b></h4>
+<hr />
+<div class="row">
+    <div class="col-md-4 interspace">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="UserFormID" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserFormTypeID" class="control-label"></label>
+                <select asp-for="UserFormTypeID" class="form-control" asp-items="ViewBag.UserFormTypeID">
+                </select>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Active" /> @Html.DisplayNameFor(model => model.Active)
+                </label>
+            </div>
+@*            <div class="form-group">
+                <label asp-for="AddedDate" class="control-label"></label>
+                <input asp-for="AddedDate" class="form-control" />
+                <span asp-validation-for="AddedDate" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Zapisz" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-light"> Powrót </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<h4 class="text-success">
+    <b>Pytania</b>
+    <a class="btn btn-outline-success rounded-circle my-1" title="Dodaj pytanie" asp-controller="UserFormQuestions" asp-action="Create" asp-route-id="@Model.UserFormID"><i class="bi-clipboard2-plus-fill" aria-label="Dodaj pytanie"></i></a>
+</h4>
+<hr />
+
+@foreach (var item in Model.Questions.OrderBy(q => q.QuestionOrder))
+{
+<table class="table" id="pytania">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Questions.First().QuestionOrder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Questions.First().QuestionText)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Questions.First().Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Questions.First().UserFormQuestionTypeID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Questions.First().AddedDate)
+            </th>
+            <th></th>
+
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuestionOrder)
+                </td>
+                <td>
+                    @if (item.QuestionText.Length <= 75)
+                    {
+                        @Html.DisplayFor(modelItem => item.QuestionText)
+                    }
+                    else
+                    {
+                        @(item.QuestionText.Substring(0, 75) + "...")
+                    }
+                </td>
+                <td>
+                    @if (item.Description.Length <= 75)
+                    {
+                        @Html.DisplayFor(modelItem => item.Description)
+                    }
+                    else
+                    {
+                        @(item.Description.Substring(0, 75) + "...")
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuestionType.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddedDate)
+                </td>
+                <td>
+                    <a class="btn btn-outline-warning rounded-circle my-1" title="Edytuj" asp-controller="UserFormQuestions" asp-action="Edit" asp-route-id="@item.UserFormQuestionID"><i class="bi-pencil" aria-label="Edycja"></i></a>
+                    @*<a class="btn btn-outline-primary rounded-circle my-1" title="Szczegóły" asp-controller="UserFormQuestions" asp-action="Details" asp-route-id="@item.UserFormQuestionID"><i class="bi-info-circle" aria-label="Szczegóły"></i></a>*@
+                    <a class="btn btn-outline-danger rounded-circle my-1" title="Usuń" asp-controller="UserFormQuestions" asp-action="Delete" asp-route-id="@item.UserFormQuestionID"><i class="bi-x-circle" aria-label="Usuń"></i></a>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <b>Opcje pytania: </b>
+                    @if (item.QuestionType.Name != "Tak/Nie" && item.QuestionType.Name != "TakNie")
+                    {
+                        @*<a asp-controller="UserFormQuestionOptions" asp-action="Create" asp-route-id="@item.UserFormQuestionID" class="btn btn-warning">Dodaj opcję</a>*@
+                        <a class="btn btn-outline-success rounded-circle my-1" title="Dodaj opcję" asp-controller="UserFormQuestionOptions" asp-action="Create" asp-route-id="@item.UserFormQuestionID"><i class="bi-clipboard2-plus-fill" aria-label="Dodaj opcję"></i></a>
+                    }
+                </td>
+                <td colspan="3">
+                <table class="table" id="opcje">
+                    <thead>
+                        <tr>
+                            <th>
+                                    @Html.DisplayNameFor(model => model.Questions.First().Options.First().OptionOrder)
+                            </th>
+                            <th>
+                                    @Html.DisplayNameFor(model => model.Questions.First().Options.First().OptionText)
+                            </th>
+                            <th>
+                                    @Html.DisplayNameFor(model => model.Questions.First().Options.First().AddedDate)
+                            </th>
+                            <th></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item2 in item.Options.OrderBy(q => q.OptionOrder))
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item2.OptionOrder)
+                                </td>
+                                <td>
+                                    @if (item2.OptionText.Length <= 75)
+                                    {
+                                        @Html.DisplayFor(modelItem => item2.OptionText)
+                                    }
+                                    else
+                                    {
+                                        @(item2.OptionText.Substring(0, 75) + "...")
+                                    }
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AddedDate)
+                                </td>
+                                <td>
+                                        @if (item.QuestionType.Name != "Tak/Nie" && item.QuestionType.Name != "TakNie")
+                                        {
+                                            <a class="btn btn-outline-warning rounded-circle my-1" title="Edytuj" asp-controller="UserFormQuestionOptions" asp-action="Edit" asp-route-id="@item2.UserFormQuestionOptionID"><i class="bi-pencil" aria-label="Edycja"></i></a>
+                                            @*                    <a class="btn btn-outline-primary rounded-circle my-1" title="Szczegóły" asp-controller="UserFormQuestionOptions" asp-action="Details" asp-route-id="@item.UserFormQuestionOptionID"><i class="bi-info-circle" aria-label="Szczegóły"></i></a>*@
+                                            <a class="btn btn-outline-danger rounded-circle my-1" title="Usuń" asp-controller="UserFormQuestionOptions" asp-action="Delete" asp-route-id="@item2.UserFormQuestionOptionID"><i class="bi-x-circle" aria-label="Usuń"></i></a>
+                                        }
+                                    </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                </td>
+            </tr>
+    </tbody>
+</table>
+<hr />
+}
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

@@ -1,0 +1,42 @@
+﻿@model Schronisko.Models.UserFormQuestion
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+
+<h1 class="text-primary oswald">Usuwanie</h1>
+
+<h3 class="alert alert-danger" role="alert">Czy na pewno chcesz usunąć pytanie?</h3>
+<div>
+    <h4 class="text-success"><b>Pytanie</b></h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2 interspace">
+            @Html.DisplayNameFor(model => model.QuestionText)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.QuestionText)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AddedDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AddedDate)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="UserFormQuestionID" />
+        <input type="submit" value="Usuń" class="btn btn-danger" /> |
+        @*<a asp-action="Index" class="btn btn-light">Powrót</a>*@
+        <a asp-controller="UserForms" asp-action="Edit" asp-route-id="@Model.UserFormID" class="btn btn-light"> Powrót do ankiety </a>
+    </form>
+</div>

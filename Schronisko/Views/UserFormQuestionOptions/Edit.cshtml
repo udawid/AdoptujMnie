@@ -1,0 +1,40 @@
+﻿@model Schronisko.Models.UserFormQuestionOption
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="text-primary oswald">Edycja opcji pytania</h1>
+
+<h4 class="text-success"><b>Opcja</b></h4>
+<hr />
+<div class="row">
+    <div class="col-md-4 interspace">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="UserFormQuestionOptionID" />
+            <input type="hidden" asp-for="UserFormQuestionID" />
+            <div class="form-group">
+                <label asp-for="OptionOrder" class="control-label"></label>
+                <input asp-for="OptionOrder" class="form-control" />
+                <span asp-validation-for="OptionOrder" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OptionText" class="control-label"></label>
+                <textarea asp-for="OptionText" class="form-control" />
+                <span asp-validation-for="OptionText" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Zapisz" class="btn btn-primary" />
+                <a asp-controller="UserForms" asp-action="Edit" asp-route-id="@ViewBag.UserFormID" class="btn btn-light"> Powrót do ankiety </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
