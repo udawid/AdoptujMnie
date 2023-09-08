@@ -20,6 +20,8 @@ namespace Schronisko.Data
                     SeedAnimals(dbContext);
                     SeedNewses(dbContext);
                     SeedAnnouncement(dbContext);
+                    SeedUserFormTypes(dbContext);
+                    SeedUserFormQuestionTypes(dbContext);
                 }
             }
         }
@@ -235,5 +237,45 @@ namespace Schronisko.Data
                 dbContext.SaveChanges();
             }
         } //koniec danych typu zwierzęcia
+
+
+        //dodawanie danych typu ankiety
+        private static void SeedUserFormTypes(ApplicationDbContext dbContext)
+        {
+            if (!dbContext.UserFormTypes.Any())
+            {
+                var types = new List<UserFormType>
+                {
+                    new UserFormType { Name = "Adopcja ogólny", Active = true}, //formularz adopcyjny ogólnodostępny/uniwersalny
+                    new UserFormType { Name = "Adopcja wybrane zwierze", Active = false}, //formularz przypisany do wybranego zwierzęcia
+                                                                                            //np. inne dla psów, a inne dla kotów,
+                                                                                            //dla zwierząt ktore nie tolerują innych zwierząt, dzieci,
+                                                                                            //czy wymagających specjalnej opieki
+                    new UserFormType { Name = "Ankieta ogólnodostępna", Active = false}, //np. ankieta z opinią o działaniu schroniska
+                };
+                dbContext.AddRange(types);
+                dbContext.SaveChanges();
+            }
+        } //koniec danych typu ankiety
+
+
+        //dodawanie danych typu pytania
+        private static void SeedUserFormQuestionTypes(ApplicationDbContext dbContext)
+        {
+            if (!dbContext.UserFormQuestionTypes.Any())
+            {
+                var types = new List<UserFormQuestionType>
+                {  // planowane wartości: 'YesNo', 'YesNoOther', 'ChooseOne', 'ChooseMultiple', 'OpenQuestion'
+                    new UserFormQuestionType { Name = "Tak/Nie", Active = true},
+                    new UserFormQuestionType { Name = "Tak/Nie/Inne", Active = false}, //aktualnie nie wspierana, do zaimplementowanie przy rozbudowie formularza
+                    new UserFormQuestionType { Name = "Wybierz jedną opcją", Active = true},
+                    new UserFormQuestionType { Name = "Wybierz wiele opcji", Active = true},
+                    new UserFormQuestionType { Name = "Pytanie otwarte", Active = false}, //aktualnie nie wspierana, do zaimplementowanie przy rozbudowie formularza
+                    
+                };
+                dbContext.AddRange(types);
+                dbContext.SaveChanges();
+            }
+        } //koniec danych typu pytania
     }
 }

@@ -19,6 +19,17 @@ namespace Schronisko.Data
         public DbSet<AppUser>? AppUsers { get; set; }
         public DbSet<AnimalType>? AnimalTypes { get; set; }
 
+
+        public DbSet<UserForm>? UserForms { get; set; }
+        public DbSet<UserFormType>? UserFormTypes { get; set; }
+        public DbSet<UserFormQuestion>? UserFormQuestions { get; set; }
+        public DbSet<UserFormQuestionType>? UserFormQuestionTypes { get; set; }
+        public DbSet<UserFormQuestionOption>? UserFormQuestionOptions { get; set; }
+
+        public DbSet<ResponseUserForm>? ResponseUserForms { get; set; }
+        public DbSet<ResponseUserFormQuestion>? ResponseUserFormQuestions { get; set; }
+        public DbSet<ResponseUserFormQuestionOption>? ResponseUserFormQuestionOptions { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
             base.OnModelCreating(modelbuilder);
@@ -42,6 +53,40 @@ namespace Schronisko.Data
             modelbuilder.Entity<Comment>()
                 .HasOne(c => c.News)
                 .WithMany(n => n.Comments);
+
+            modelbuilder.Entity<UserForm>()
+                .HasOne(c => c.FormType);
+            modelbuilder.Entity<UserForm>()
+                .HasMany(n => n.Questions)
+                .WithOne(c => c.Form);
+            modelbuilder.Entity<UserFormQuestion>()
+                .HasOne(c => c.QuestionType);
+            modelbuilder.Entity<UserFormQuestion>()
+                .HasOne(n => n.Form)
+                .WithMany(c => c.Questions);
+            modelbuilder.Entity<UserFormQuestion>()
+                .HasMany(n => n.Options)
+                .WithOne(c => c.Question);
+            modelbuilder.Entity<UserFormQuestionOption>()
+                .HasOne(n => n.Question)
+                .WithMany(c => c.Options);
+
+            //modelbuilder.Entity<ResponseUserForm>()
+            //    .HasOne(c => c.FormType);
+            modelbuilder.Entity<ResponseUserForm>()
+                .HasMany(n => n.ResponseQuestions)
+                .WithOne(c => c.ResponseForm);
+            //modelbuilder.Entity<ResponseUserFormQuestion>()
+            //    .HasOne(c => c.QuestionType);
+            modelbuilder.Entity<ResponseUserFormQuestion>()
+                .HasOne(n => n.ResponseForm)
+                .WithMany(c => c.ResponseQuestions);
+            modelbuilder.Entity<ResponseUserFormQuestion>()
+                .HasMany(n => n.ResponseOptions)
+                .WithOne(c => c.ResponseQuestion);
+            modelbuilder.Entity<ResponseUserFormQuestionOption>()
+                .HasOne(n => n.ResponseQuestion)
+                .WithMany(c => c.ResponseOptions);
 
 
             //modelbuilder.Entity<Animal>()
