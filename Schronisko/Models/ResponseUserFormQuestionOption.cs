@@ -38,6 +38,7 @@ namespace Schronisko.Models
 
         //END - kopia pól z UserFormQuestionOption, ponieważ UserFormQuestionOption może być edytowany
 
+        //ustawione na true jeśli użytkownik zaznaczył daną odpowiedź na ankiecie
         public bool Checked { get; set; }
 
         //[Display(Name = "Ankieta wypełniona przez:")]
