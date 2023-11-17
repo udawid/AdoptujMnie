@@ -1,0 +1,292 @@
+﻿@model Schronisko.Models.AdoptionForm
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>AdoptionForm</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="AnimalId" class="control-label"></label>
+                <input asp-for="AnimalId" class="form-control" />
+                <span asp-validation-for="AnimalId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CurrentUserName" class="control-label"></label>
+                <input asp-for="CurrentUserName" class="form-control" />
+                <span asp-validation-for="CurrentUserName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Answer1" class="control-label"></label>
+                <div>
+                    <select asp-for="Answer1" class="form-control">
+                        <option value="" selected disabled>--Wybierz odpowiedź--</option>
+                        <option value="nie">Nie, nie miałem zwierząt</option>
+                        <option value="kot">Kot</option>
+                        <option value="pies">Pies</option>
+                        <option value="inne">Inne zwierzę</option>
+                    </select>
+                </div>
+                <span asp-validation-for="Answer1" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Answer2" class="control-label"></label>
+                <div>
+                    <select asp-for="Answer2" class="form-control">
+                        <option value="" selected disabled>--Wybierz odpowiedź--</option>
+                        <option value="nie">Nie</option>
+                        <option value="kot">Kot</option>
+                        <option value="pies">Pies</option>
+                        <option value="inne">Inne zwierzę</option>
+                    </select>
+                </div>
+                <span asp-validation-for="Answer2" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Answer3" class="control-label"></label>
+                <div>
+                    <select asp-for="Answer3" class="form-control">
+                        <option value="" selected disabled>--Wybierz odpowiedź--</option>
+                        <option value="do_5_lat">Tak, do 5 roku życia</option>
+                        <option value="5-10_lat">Tak, w wieku 5-10 lat</option>
+                        <option value="nastolatki">Tak, nastolatki</option>
+                        <option value="nie">Nie</option>
+                    </select>
+                </div>
+                <span asp-validation-for="Answer3" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Answer4" class="control-label"></label>
+                <div>
+                    <input type="radio" asp-for="Answer4" value="true" /> Tak
+                    <input type="radio" asp-for="Answer4" value="false" /> Nie
+                </div>
+                <span asp-validation-for="Answer4" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Answer5" class="control-label"></label>
+                <select asp-for="Answer5" class="form-control">
+                    <option value="" selected disabled>--Wybierz odpowiedź--</option>
+                    <option value="dom">Dom</option>
+                    <option value="mieszkanie">Mieszkanie</option>
+                    <option value="inne">Inne</option>
+                </select>
+                <span asp-validation-for="Answer5" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Answer6" class="control-label"></label>
+                <div>
+                    <input type="radio" asp-for="Answer6" value="nie" /> Nie
+                    <input type="radio" asp-for="Answer6" value="tak_nieogrodzony" /> Tak, nieogrodzony
+                    <input type="radio" asp-for="Answer6" value="tak_ogrodzony" /> Tak, ogrodzony
+                </div>
+                <span asp-validation-for="Answer6" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Answer7" class="control-label"></label>
+                <div>
+                    <select asp-for="Answer7" class="form-control">
+                        <option value="" selected disabled>--Wybierz odpowiedź--</option>
+                        <option value="w_domu">W domu</option>
+                        <option value="w_budzie">W budzie</option>
+                        <option value="w_pomieszczeniu_gospodarczym">W wydzielonym pomieszczeniu gospodarczym</option>
+                        <option value="na_lancuchu">Na łańcuchu</option>
+                        <option value="w_zlotej_klatce">W złotej klatce</option>
+                        <option value="inne">Inne</option>
+                    </select>
+                </div>
+                <span asp-validation-for="Answer7" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Answer8" class="control-label"></label>
+                <div>
+                    <select asp-for="Answer8" class="form-control">
+                        <option value="" selected disabled>--Wybierz odpowiedź--</option>
+                        <option value="nigdy">Nigdy</option>
+                        <option value="mniej_niz_1_raz_dziennie">Mniej niż 1 raz dziennie</option>
+                        <option value="1-2_razy_dziennie">1-2 razy dziennie</option>
+                        <option value="wiecej_niz_2_razy_dziennie">Więcej niż 2 razy dziennie</option>
+                    </select>
+                </div>
+                <span asp-validation-for="Answer8" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Answer9" class="control-label"></label>
+                <div>
+                    <select asp-for="Answer9" class="form-control">
+                        <option value="" selected disabled>--Wybierz odpowiedź--</option>
+                        <option value="mniej_niz_05h_dziennie">Mniej niż 0.5h dziennie</option>
+                        <option value="05-1h_dziennie">0.5–1h dziennie</option>
+                        <option value="wiecej_niz_1h_dziennie">Więcej niż 1h dziennie</option>
+                    </select>
+                </div>
+                <span asp-validation-for="Answer9" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Answer10" class="control-label"></label>
+                <select asp-for="Answer10" class="form-control">
+                    <option value="tak">Tak</option>
+                    <option value="nie">Nie</option>
+                    <option value="nie_wiem">Nie wiem</option>
+                </select>
+                <span asp-validation-for="Answer10" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Answer11" class="control-label"></label>
+                <div>
+                    <input type="radio" asp-for="Answer11" value="true" /> Tak
+                    <input type="radio" asp-for="Answer11" value="false" /> Nie
+                </div>
+                <span asp-validation-for="Answer11" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Answer12" class="control-label"></label>
+                <div>
+                    <select asp-for="Answer12" class="form-control">
+                        <option value="" selected disabled>--Wybierz odpowiedź--</option>
+                        <option value="pies">Pies</option>
+                        <option value="kot">Kot</option>
+                        <option value="chomik">Chomik</option>
+                        <option value="krolik">Królik</option>
+                        <option value="inne">Inne</option>
+                    </select>
+                </div>
+                <span asp-validation-for="Answer12" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Answer13" class="control-label"></label>
+                <textarea asp-for="Answer13" class="form-control"></textarea>
+                <span asp-validation-for="Answer13" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Answer14" class="control-label"></label>
+                <div>
+                    <input type="radio" asp-for="Answer14" value="true" /> Tak
+                    <input type="radio" asp-for="Answer14" value="false" /> Nie
+                </div>
+                <span asp-validation-for="Answer14" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Answer15" class="control-label"></label>
+                <div>
+                    <input type="radio" asp-for="Answer15" value="true" /> Tak
+                    <input type="radio" asp-for="Answer15" value="false" /> Nie
+                </div>
+                <span asp-validation-for="Answer15" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Answer16" class="control-label"></label>
+                <div>
+                    <input type="radio" asp-for="Answer16" value="true" /> Tak
+                    <input type="radio" asp-for="Answer16" value="false" /> Nie
+                </div>
+                <span asp-validation-for="Answer16" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Answer17" class="control-label"></label>
+                <div>
+                    <input type="radio" asp-for="Answer17" value="true" /> Tak
+                    <input type="radio" asp-for="Answer17" value="false" /> Nie
+                </div>
+                <span asp-validation-for="Answer17" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Answer18" class="control-label"></label>
+                <div>
+                    <input type="radio" asp-for="Answer18" value="true" /> Tak
+                    <input type="radio" asp-for="Answer18" value="false" /> Nie
+                    <input type="radio" asp-for="Answer18" value="nie_wiem" /> Nie wiem
+                </div>
+                <span asp-validation-for="Answer18" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Answer19" class="control-label"></label>
+                <div>
+                    <input type="radio" asp-for="Answer19" value="true" /> Tak
+                    <input type="radio" asp-for="Answer19" value="false" /> Nie
+                </div>
+                <span asp-validation-for="Answer19" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Answer20" class="control-label"></label>
+                <div>
+                    <input type="radio" asp-for="Answer20" value="true" /> Tak
+                    <input type="radio" asp-for="Answer20" value="false" /> Nie
+                </div>
+                <span asp-validation-for="Answer20" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Answer21" class="control-label"></label>
+                <div>
+                    <input type="radio" asp-for="Answer21" value="true" /> Tak
+                    <input type="radio" asp-for="Answer21" value="false" /> Nie
+                </div>
+                <span asp-validation-for="Answer21" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Answer22" class="control-label"></label>
+                <div>
+                    <input type="radio" asp-for="Answer22" value="true" /> Tak
+                    <input type="radio" asp-for="Answer22" value="false" /> Nie
+                </div>
+                <span asp-validation-for="Answer22" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Answer23" class="control-label"></label>
+                <textarea asp-for="Answer23" class="form-control"></textarea>
+                <span asp-validation-for="Answer23" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Answer24" class="control-label"></label>
+                <div>
+                    <input type="radio" asp-for="Answer24" value="true" /> Tak
+                    <input type="radio" asp-for="Answer24" value="false" /> Nie
+                </div>
+                <span asp-validation-for="Answer24" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

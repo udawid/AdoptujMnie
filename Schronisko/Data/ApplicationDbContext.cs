@@ -18,6 +18,8 @@ namespace Schronisko.Data
         public DbSet<News>? Newses { get; set; }
         public DbSet<AppUser>? AppUsers { get; set; }
         public DbSet<AnimalType>? AnimalTypes { get; set; }
+        public DbSet<AdoptionForm>? AdoptionForms { get; set; }
+
 
 
         public DbSet<UserForm>? UserForms { get; set; }
