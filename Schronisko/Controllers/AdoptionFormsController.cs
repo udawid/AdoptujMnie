@@ -46,8 +46,34 @@ namespace Schronisko.Controllers
         }
 
         // GET: AdoptionForms/Create
-        public IActionResult Create()
+        public IActionResult Create(int? AnimalID, string CurrentUserName)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                TempData["ErrorMessage"] = "Formularz adopcyjny może wypełnić tylko użytkownik zalogowany.";
+                return RedirectToAction("Details", "Animals", new { id = AnimalID });
+            }
+
+            if (AnimalID == null)
+            {
+                return NotFound();
+            }
+
+            // Przykładowa logika pobierania informacji o zwierzęciu na podstawie animalId
+            Animal animal = _context.Animals.Find(AnimalID);
+
+            if (animal == null)
+            {
+                return NotFound();
+            }
+
+            // Przygotuj dane do przekazania do widoku
+            AdoptionForm viewModel = new()
+            {
+                AnimalId = (int)AnimalID,
+                CurrentUserName = User.Identity.Name
+                
+            };
             return View();
         }
 
