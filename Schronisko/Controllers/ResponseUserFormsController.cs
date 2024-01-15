@@ -46,8 +46,16 @@ namespace Schronisko.Controllers
         }
 
         // GET: ResponseUserForms/Create
-        public IActionResult Create()
+        public IActionResult Create(int? id)
         {
+            if (id == null)
+            {
+                //jeśli nie podano id ankiety, to wyświetlana jest pierwsza aktywna ankieta ogólna
+                id = _context.UserForms.FirstOrDefault(f => (f.Active == true && f.FormType.Name == "Adopcja ogólny"))
+                    .UserFormID;
+            }
+            ViewData["UserFormID"] = id;
+            //ViewData["UserFormID"] = _context.UserFormQuestions.FirstOrDefault(q => q.UserFormQuestionID == id).UserFormID;
             ViewData["Id"] = new SelectList(_context.AppUsers, "Id", "Id");
             return View();
         }

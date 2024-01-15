@@ -10,32 +10,34 @@
 
 <h4 class="text-success"><b>Dane ankiety</b></h4>
 <hr />
-<div class="row">
-    <div class="col-md-4 interspace">
+<div class="container">
+    <div class="row">
         <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="UserFormID" />
-            <div class="form-group">
+            @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="clearfix"></div>
+            <input type="hidden" asp-for="UserFormID" />*@
+            <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
                 <label asp-for="Title" class="control-label"></label>
                 <input asp-for="Title" class="form-control" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="clearfix"></div>
+            <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
                 <label asp-for="Description" class="control-label"></label>
                 <textarea asp-for="Description" class="form-control"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
                 <label asp-for="UserFormTypeID" class="control-label"></label>
                 <select asp-for="UserFormTypeID" class="form-control" asp-items="ViewBag.UserFormTypeID">
                 </select>
             </div>
-            <div class="form-group form-check">
+            <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4 form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="Active" /> @Html.DisplayNameFor(model => model.Active)
                 </label>
@@ -45,17 +47,19 @@
                 <input asp-for="AddedDate" class="form-control" />
                 <span asp-validation-for="AddedDate" class="text-danger"></span>
             </div>*@
+            <div class="clearfix"></div>
             <div class="form-group">
                 <input type="submit" value="Zapisz" class="btn btn-primary" />
                 <a asp-action="Index" class="btn btn-light"> Powrót </a>
             </div>
+            <div class="clearfix"></div>
         </form>
     </div>
 </div>
 
 <h4 class="text-success">
     <b>Pytania</b>
-    <a class="btn btn-outline-success rounded-circle my-1" title="Dodaj pytanie" asp-controller="UserFormQuestions" asp-action="Create" asp-route-id="@Model.UserFormID"><i class="bi-clipboard2-plus-fill" aria-label="Dodaj pytanie"></i></a>
+    <a class="btn-small btn-outline-success rounded-circle my-1" title="Dodaj pytanie" asp-controller="UserFormQuestions" asp-action="Create" asp-route-id="@Model.UserFormID"><i class="bi-clipboard2-plus-fill" aria-label="Dodaj pytanie"></i></a>
 </h4>
 <hr />
 
@@ -76,9 +80,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Questions.First().UserFormQuestionTypeID)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.Questions.First().AddedDate)
-            </th>
+            </th>*@
             <th></th>
 
         </tr>
@@ -111,26 +115,20 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.QuestionType.Name)
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.AddedDate)
-                </td>
+                </td>*@
                 <td>
-                    <a class="btn btn-outline-warning rounded-circle my-1" title="Edytuj" asp-controller="UserFormQuestions" asp-action="Edit" asp-route-id="@item.UserFormQuestionID"><i class="bi-pencil" aria-label="Edycja"></i></a>
+                    <a class="btn-small btn-outline-warning rounded-circle my-1" title="Edytuj" asp-controller="UserFormQuestions" asp-action="Edit" asp-route-id="@item.UserFormQuestionID"><i class="bi-pencil" aria-label="Edycja"></i></a>
                     @*<a class="btn btn-outline-primary rounded-circle my-1" title="Szczegóły" asp-controller="UserFormQuestions" asp-action="Details" asp-route-id="@item.UserFormQuestionID"><i class="bi-info-circle" aria-label="Szczegóły"></i></a>*@
-                    <a class="btn btn-outline-danger rounded-circle my-1" title="Usuń" asp-controller="UserFormQuestions" asp-action="Delete" asp-route-id="@item.UserFormQuestionID"><i class="bi-x-circle" aria-label="Usuń"></i></a>
+                    <a class="btn-small btn-outline-danger rounded-circle my-1" title="Usuń" asp-controller="UserFormQuestions" asp-action="Delete" asp-route-id="@item.UserFormQuestionID"><i class="bi-x-circle" aria-label="Usuń"></i></a>
                 </td>
             </tr>
             <tr>
-                <td></td>
                 <td>
                     <b>Opcje pytania: </b>
-                    @if (item.QuestionType.Name != "Tak/Nie" && item.QuestionType.Name != "TakNie")
-                    {
-                        @*<a asp-controller="UserFormQuestionOptions" asp-action="Create" asp-route-id="@item.UserFormQuestionID" class="btn btn-warning">Dodaj opcję</a>*@
-                        <a class="btn btn-outline-success rounded-circle my-1" title="Dodaj opcję" asp-controller="UserFormQuestionOptions" asp-action="Create" asp-route-id="@item.UserFormQuestionID"><i class="bi-clipboard2-plus-fill" aria-label="Dodaj opcję"></i></a>
-                    }
                 </td>
-                <td colspan="3">
+                <td colspan="5">
                 <table class="table" id="opcje">
                     <thead>
                         <tr>
@@ -140,10 +138,16 @@
                             <th>
                                     @Html.DisplayNameFor(model => model.Questions.First().Options.First().OptionText)
                             </th>
-                            <th>
+                            @*<th>
                                     @Html.DisplayNameFor(model => model.Questions.First().Options.First().AddedDate)
+                            </th>*@
+                            <th>
+                                    @if (item.QuestionType.Name != "Tak/Nie" && item.QuestionType.Name != "TakNie")
+                                    {
+                                        @*<a asp-controller="UserFormQuestionOptions" asp-action="Create" asp-route-id="@item.UserFormQuestionID" class="btn btn-warning">Dodaj opcję</a>*@
+                                        <a class="btn-small btn-outline-success rounded-circle my-1" title="Dodaj opcję" asp-controller="UserFormQuestionOptions" asp-action="Create" asp-route-id="@item.UserFormQuestionID"><i class="bi-clipboard2-plus-fill" aria-label="Dodaj opcję"></i></a>
+                                    }
                             </th>
-                            <th></th>
 
                         </tr>
                     </thead>
@@ -164,15 +168,15 @@
                                         @(item2.OptionText.Substring(0, 75) + "...")
                                     }
                                 </td>
-                                <td>
+                                @*<td>
                                     @Html.DisplayFor(modelItem => item.AddedDate)
-                                </td>
+                                </td>*@
                                 <td>
                                         @if (item.QuestionType.Name != "Tak/Nie" && item.QuestionType.Name != "TakNie")
                                         {
-                                            <a class="btn btn-outline-warning rounded-circle my-1" title="Edytuj" asp-controller="UserFormQuestionOptions" asp-action="Edit" asp-route-id="@item2.UserFormQuestionOptionID"><i class="bi-pencil" aria-label="Edycja"></i></a>
+                                            <a class="btn-small btn-outline-warning rounded-circle my-1" title="Edytuj" asp-controller="UserFormQuestionOptions" asp-action="Edit" asp-route-id="@item2.UserFormQuestionOptionID"><i class="bi-pencil" aria-label="Edycja"></i></a>
                                             @*                    <a class="btn btn-outline-primary rounded-circle my-1" title="Szczegóły" asp-controller="UserFormQuestionOptions" asp-action="Details" asp-route-id="@item.UserFormQuestionOptionID"><i class="bi-info-circle" aria-label="Szczegóły"></i></a>*@
-                                            <a class="btn btn-outline-danger rounded-circle my-1" title="Usuń" asp-controller="UserFormQuestionOptions" asp-action="Delete" asp-route-id="@item2.UserFormQuestionOptionID"><i class="bi-x-circle" aria-label="Usuń"></i></a>
+                                            <a class="btn-small btn-outline-danger rounded-circle my-1" title="Usuń" asp-controller="UserFormQuestionOptions" asp-action="Delete" asp-route-id="@item2.UserFormQuestionOptionID"><i class="bi-x-circle" aria-label="Usuń"></i></a>
                                         }
                                     </td>
                             </tr>
