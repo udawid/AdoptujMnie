@@ -1,4 +1,6 @@
 ﻿@model Schronisko.Models.ViewModels.HomeDataVM;
+@inject Schronisko.Data.ApplicationDbContext _context;
+
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -166,6 +168,14 @@
 	</section>
 
 	<!--------SchroniskoWLiczbach---->
+
+
+	@{
+		int animalsCount = _context.Animals.Count(animal => animal.Dostepnosc == true || animal.Dostepnosc == null);
+		int announcementsCount = _context.Announcements.Count(announcement => announcement.Status == "Znaleziony" || announcement.Status == null);
+		int adoptionCount = _context.Animals.Count(animal => animal.Status == "Adoptowany" || animal.Status == null);
+	}
+
 	<section class="cta">
 		<div class="heading">
 			<h2>Schronisko w <br> liczbach</h2>
@@ -173,17 +183,17 @@
 
 		<div class="cta-box">
 			<div class="wrap one">
-				<h3>60+</h3>
+				<h3>@adoptionCount</h3>
 				<p>Zaadoptowanych zwierząt</p>
 			</div>
 
 			<div class="wrap two">
-				<h3>40+</h3>
+				<h3>@announcementsCount</h3>
 				<p>Odnalezionych zwierząt</p>
 			</div>
 
 			<div class="wrap three">
-				<h3>130+</h3>
+				<h3>@animalsCount</h3>
 				<p>Zwierząt do adopcji</p>
 			</div>
 
