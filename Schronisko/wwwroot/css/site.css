@@ -253,7 +253,7 @@ header.sticky {
     background: url(../graphic/img/bg-about.png);
     background-repeat: no-repeat;
     background-position: right bottom;
-    background-position-x: 75%;
+    background-position-x: 100%;
     background-size: 15%;
 }
 
@@ -469,7 +469,7 @@ header.sticky {
 
 .contact {
     background: #8067f0eb;
-    width: 64%;
+    /*width: 64%;*/
     margin: 100px auto;
     padding: 70px 150px;
     display: flex;
