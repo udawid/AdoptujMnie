@@ -1,4 +1,6 @@
 ﻿@model Schronisko.Models.ViewModels.HomeDataVM;
+@inject Schronisko.Data.ApplicationDbContext _context;
+
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -22,7 +24,7 @@
     <!-- ABOUT US -->
     <section class="about" id="about">
       <div class="about-img">
-        <img src="~/graphic/img/main1.png" />
+        <img src="~/graphic/img/about.png" />
       </div>
       <div class="about-text">
         <h3>O nas</h3>
@@ -32,14 +34,10 @@
 
 			Misją naszego schroniska jest nie tylko zapewnienie tymczasowego schronienia dla bezdomnych zwierząt, ale także promowanie adopcji jako najlepszego rozwiązania dla tych, którzy potrzebują domu. Wierzymy, że każdy zwierzak zasługuje na szansę na szczęśliwe życie u boku kochającej rodziny.
 
-			Nasi pracownicy i wolontariusze angażują się w pełni, aby zapewnić zwierzętom opiekę, leczenie, aktywność i miłość, które są niezbędne do ich dobrej kondycji fizycznej i psychicznej.
+@*			Nasi pracownicy i wolontariusze angażują się w pełni, aby zapewnić zwierzętom opiekę, leczenie, aktywność i miłość, które są niezbędne do ich dobrej kondycji fizycznej i psychicznej.
 			Razem tworzymy przytulne miejsce, gdzie miłość do zwierząt jest wartością nadrzędną.
-			Dołącz do naszej rodziny i pomóż nam tworzyć historie szczęścia dla naszych podopiecznych!
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
+			Dołącz do naszej rodziny i pomóż nam tworzyć historie szczęścia dla naszych podopiecznych!*@
+
         </p>
       </div>
     </section>
@@ -167,6 +165,14 @@
 	</section>
 
 	<!--------SchroniskoWLiczbach---->
+
+
+	@{
+		int animalsCount = _context.Animals.Count(animal => animal.Dostepnosc == true || animal.Dostepnosc == null);
+		int announcementsCount = _context.Announcements.Count(announcement => announcement.Status == "Znaleziony" || announcement.Status == null);
+		int adoptionCount = _context.Animals.Count(animal => animal.Status == "Adoptowany" || animal.Status == null);
+	}
+
 	<section class="cta">
 		<div class="heading">
 			<h2>Schronisko w <br> liczbach</h2>
@@ -174,17 +180,17 @@
 
 		<div class="cta-box">
 			<div class="wrap one">
-				<h3>60+</h3>
+				<h3>@adoptionCount</h3>
 				<p>Zaadoptowanych zwierząt</p>
 			</div>
 
 			<div class="wrap two">
-				<h3>40+</h3>
+				<h3>@announcementsCount</h3>
 				<p>Odnalezionych zwierząt</p>
 			</div>
 
 			<div class="wrap three">
-				<h3>130+</h3>
+				<h3>@animalsCount</h3>
 				<p>Zwierząt do adopcji</p>
 			</div>
 
@@ -195,22 +201,28 @@
 	<section class="contact" id="contact">
 		<div class="container">
 			<div class="center">
-			<h3>Skontaktuj się z nami</h3>
-			<div class="my-3 pt-3 col-6 col-md-12">
-				<p class="text-light"><i class="bi-geo-fill"></i> Płock, al. Kilińskiego 12</p>
-				<p class="text-light"><i class="bi-telephone-fill"></i> +48 24 366 41 00</p>
-				<p class="text-light"><i class="bi-envelope-fill"></i> schronisko@adoptujmnie.pl</p>
-				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d155288.34384827103!2d19.4271085328125!3d52.5446442!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471c7090b9c877d9%3A0x2d43661b0a4753e!2zU1pLT8WBQSBXWcW7U1pBIElNLiBQQVfFgUEgV8WBT0RLT1dJQ0EgVyBQxYFPQ0tV!5e0!3m2!1spl!2spl!4v1673302346423!5m2!1spl!2spl" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-			</div>
+			<div>
 				<p>Wyślij maila</p>
 			</div>
-
 			<div class="action">
 				<form>
 					<input type="email" name="email" placeholder="Enter Your email" required>
 					<input type="submit" name="submit" value="Submit">
 				</form>
 			</div>
+			</div>
+			<h3>Skontaktuj się z nami</h3>
+			<div class="my-3 pt-3 col-6 col-md-12">
+				<p class="text-light"><i class="bi-geo-fill"></i> Płock, al. Kilińskiego 12</p>
+				<p class="text-light"><i class="bi-telephone-fill"></i> +48 24 366 41 00</p>
+				<p class="text-light"><i class="bi-envelope-fill"></i> schronisko@adoptujmnie.pl</p>
+			</div>
+
+			<div>
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d155288.34384827103!2d19.4271085328125!3d52.5446442!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471c7090b9c877d9%3A0x2d43661b0a4753e!2zU1pLT8WBQSBXWcW7U1pBIElNLiBQQVfFgUEgV8WBT0RLT1dJQ0EgVyBQxYFPQ0tV!5e0!3m2!1spl!2spl!4v1673302346423!5m2!1spl!2spl" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+			</div>
+
+
 		</div>
 	</section>
 
