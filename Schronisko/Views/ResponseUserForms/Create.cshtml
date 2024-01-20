@@ -1,61 +1,104 @@
-﻿@model Schronisko.Models.ResponseUserForm
+﻿@*@model Schronisko.Models.ResponseUserForm*@
+@using Schronisko.Models
+@model dynamic
 
 @{
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+@{
 
-<h4>ResponseUserForm</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="UserFormID" class="control-label"></label>
-                <select asp-for="UserFormID" class ="form-control" asp-items="ViewBag.UserFormID"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UserFormTypeID" class="control-label"></label>
-                <input asp-for="UserFormTypeID" class="form-control" />
-                <span asp-validation-for="UserFormTypeID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <select asp-for="Id" class ="form-control" asp-items="ViewBag.Id"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="AddedDate" class="control-label"></label>
-                <input asp-for="AddedDate" class="form-control" />
-                <span asp-validation-for="AddedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    var userForm = (UserForm)ViewBag.userForm;
+    //var formQuestions = (List<UserFormQuestion>)ViewBag.formQuestions;
+    //var surveyQAnswers = (List<SurveyQuestionAnswer>)ViewBag.surveyQuestionAnswers;
 }
+
+<h2>Zapraszamy do wypełnienia ankiety.</h2>
+
+<table class="table table-striped table-bordered">
+@*    <thead>
+        <tr>
+            <th scope="col">Question Id</th>
+            <th scope="col">Question</th>
+        </tr>
+    </thead>*@
+    <tbody>
+        @{
+            int c = 0;
+            int i = 0;
+        }
+        @foreach (var item in userForm.Questions)
+        {
+            <tr>
+                <th scope="row">
+                    @{
+                        ++c;
+                    }
+                    @c
+                </th>
+                <td>@item.QuestionText</td>
+                <td>
+                    @if (item.QuestionType.Name == "Tak / Nie" || item.QuestionType.Name == "Tak/Nie" || item.QuestionType.Name == "Wybierz jedną opcją")
+                    {
+                        foreach (var option in item.Options)
+                        {
+                            @Html.RadioButton(@item.UserFormQuestionID.ToString(), @option.OptionText, new { @style =     "marginleft:15px;",id=@option.UserFormQuestionOptionID })
+                            @Html.Label(@option.UserFormQuestionOptionID.ToString(), @option.OptionText)
+                        }
+                        <br />
+@*                        @Html.Label("comment","Optionally Comment :" , new { @style = "margin-left:15px;" })
+                        <textarea style="width: 95%;margin-left: 15px;" id=@item.SurveyQuestionID name="comment"></textarea>*@
+                    }
+                    else if (item.QuestionType.Name == "Wybierz wiele opcji")
+                    {
+                        foreach (var option in item.Options)
+                        {
+                                <label style="margin-left: 15px;">
+                                <input type="checkbox" name="dropdown-group" id=@item.UserFormQuestionID value=@option.OptionText />
+                                @option.OptionText
+                                </label>
+                        }
+                        <br />
+                    }
+                  @*  else
+                    {
+                        <textarea style="width: 95%; margin-left: 15px;" id=@item.SurveyQuestionID name="comment"></textarea>
+                    }*@
+                </td>
+            </tr>
+            i++;
+        }
+    </tbody>
+</table>
+<input style="margin: 15px;" type="submit" value="Wyślij" onclick="send()" class="btn btn-success" />
+
+@*<script type="text/javascript">
+    let postData = {};
+    function send() {
+        var checkbox = document.querySelectorAll('input[type="checkbox"]');
+        var radio = document.querySelectorAll('input[type="radio"]');
+        var comment = document.querySelectorAll('textarea');
+        let a = Array.from(checkbox);
+        let b = Array.from(radio);
+        let c = Array.from(comment);
+        a = a.filter((x) => x.checked);
+        b = b.filter((x) => x.checked);
+        c = c.filter(x => x.value);
+        let ids = [].concat(a.map(x => x.id), b.map(x => x.name), c.map(x => x.id));
+        let values = [].concat(a.map(x => x.value), b.map(x => x.value), c.map(x => x.value));
+        postData.ids = ids;
+        postData.values = values;
+        postData.surveyID = @ViewBag.survey.SurveyID;
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("SolveSurvey","User",new {area="User"})',
+            data: postData,
+            success: function (data) {
+                alert('Success');
+            },
+            dataType: 'json',
+            traditional: true,
+        });
+        postData = {};
+    }
+</script>*@

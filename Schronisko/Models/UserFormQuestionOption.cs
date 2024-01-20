@@ -36,6 +36,14 @@ namespace Schronisko.Models
         //[DefaultValue(true)]
         //public bool Active { get; set; }
 
+        [Display(Name = "Czy dyskwalifikująca? ")]
+        [DefaultValue(false)]
+        public bool Disqualifying { get; set; }
+
+        [Display(Name = "Punkty: ")]
+        //[DefaultValue(true)]
+        public int? Points { get; set; }
+
         [Display(Name = "Autor opcji:")]
         public string? Id { get; set; }
         //Id użytkownika tworzącego opcję

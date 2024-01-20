@@ -9,7 +9,7 @@
 </h1>
 
 
-<a class="btn btn-outline-success rounded-circle my-1" title="Dodaj ankietę" asp-action="Create"><i class="bi-clipboard2-plus-fill" aria-label="Dodaj ankietę"></i></a>
+<a class="btn btn-outline-success my-1" title="Dodaj ankietę" asp-action="Create"><i class="bi-clipboard2-plus-fill" aria-label="Dodaj ankietę"></i></a>
 
 @*<p>
     <a asp-action="Create" class="btn btn-warning">Dodaj ankietę</a>
@@ -32,9 +32,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Active)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.AddedDate)
-            </th>
+            </th>*@
             <th></th>
 
         </tr>
@@ -65,15 +65,15 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Active)
                 </td>
-                <td>
+               @* <td>
                     @Html.DisplayFor(modelItem => item.AddedDate)
-                </td>
+                </td>*@
                 <td>
-                    <a class="btn btn-outline-warning rounded-circle my-1" title="Edytuj" asp-action="Edit" asp-route-id="@item.UserFormID"><i class="bi-pencil" aria-label="Edycja"></i></a>
-                    <a class="btn btn-outline-primary rounded-circle my-1" title="Szczegóły" asp-action="Details" asp-route-id="@item.UserFormID"><i class="bi-info-circle" aria-label="Szczegóły"></i></a>
+                    <a class="btn-small btn-outline-warning my-1" title="Edytuj" asp-action="Edit" asp-route-id="@item.UserFormID"><i class="bi-pencil" aria-label="Edycja"></i></a>
+                    <a class="btn-small btn-outline-primary my-1" title="Szczegóły" asp-action="Details" asp-route-id="@item.UserFormID"><i class="bi-info-circle" aria-label="Szczegóły"></i></a>
                     @*<a class="btn btn-outline-success rounded-circle my-1" title="Podgląd" asp-action="Preview" asp-route-id="@item.UserFormID"><i class="bi-eye" aria-label="Podgląd"></i></a>*@
-                    <a class="btn btn-outline-info rounded-circle my-1" title="Wyniki" asp-action="Details" asp-route-id="@item.UserFormID"><i class="bi-clipboard-data" aria-label="Wyniki"></i></a>
-                    <a class="btn btn-outline-danger rounded-circle my-1" title="Usuń" asp-action="Delete" asp-route-id="@item.UserFormID"><i class="bi-x-circle" aria-label="Usuń"></i></a>
+                    <a class="btn-small btn-outline-info my-1" title="Wyniki" asp-action="Details" asp-route-id="@item.UserFormID"><i class="bi-clipboard-data" aria-label="Wyniki"></i></a>
+                    <a class="btn-small btn-outline-danger my-1" title="Usuń" asp-action="Delete" asp-route-id="@item.UserFormID"><i class="bi-x-circle" aria-label="Usuń"></i></a>
                 </td>
             </tr>
         }

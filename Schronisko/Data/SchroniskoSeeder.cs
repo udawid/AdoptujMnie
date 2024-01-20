@@ -247,7 +247,7 @@ namespace Schronisko.Data
                 var types = new List<UserFormType>
                 {
                     new UserFormType { Name = "Adopcja ogólny", Active = true}, //formularz adopcyjny ogólnodostępny/uniwersalny
-                    new UserFormType { Name = "Adopcja wybrane zwierze", Active = false}, //formularz przypisany do wybranego zwierzęcia
+                    new UserFormType { Name = "Adopcja wybrane zwierze", Active = true}, //formularz przypisany do wybranego zwierzęcia
                                                                                             //np. inne dla psów, a inne dla kotów,
                                                                                             //dla zwierząt ktore nie tolerują innych zwierząt, dzieci,
                                                                                             //czy wymagających specjalnej opieki
