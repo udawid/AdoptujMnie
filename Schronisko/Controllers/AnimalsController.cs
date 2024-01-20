@@ -9,16 +9,20 @@ using Microsoft.EntityFrameworkCore;
 using Schronisko.Data;
 using Schronisko.Models;
 using Schronisko.Models.ViewModels;
+using Microsoft.AspNetCore.Identity;
+
 
 namespace Schronisko.Controllers
 {
     public class AnimalsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<AppUser> _userManager;
 
-        public AnimalsController(ApplicationDbContext context)
+        public AnimalsController(ApplicationDbContext context, UserManager<AppUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Animals
@@ -129,7 +133,7 @@ namespace Schronisko.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AnimalID,Name,Description,AnimalTypeID,Status,Dostepnosc,Photo,AddedDate")] Animal animal)
+        public async Task<IActionResult> Create([Bind("AnimalID,Name,Description,AnimalTypeID,Status,Dostepnosc,Photo,AddedDate,AdoptowanyPrzez")] Animal animal)
         {
             if (ModelState.IsValid)
             {
@@ -154,6 +158,11 @@ namespace Schronisko.Controllers
             {
                 return NotFound();
             }
+            
+                // Pobierz listę e-maili użytkowników
+            var emails = _userManager.Users.Select(u => u.Email).ToList();
+            ViewBag.UsersEmails = new SelectList(emails);
+
             ViewData["AnimalTypeID"] = new SelectList(_context.AnimalTypes, "AnimalTypeID", "Name", animal.AnimalTypeID);
             return View(animal);
         }
@@ -163,7 +172,7 @@ namespace Schronisko.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("AnimalID,Name,Description,AnimalTypeID,Status,Dostepnosc,Photo,AddedDate")] Animal animal)
+        public async Task<IActionResult> Edit(int id, [Bind("AnimalID,Name,Description,AnimalTypeID,Status,Dostepnosc,Photo,AddedDate,AdoptowanyPrzez")] Animal animal)
         {
             if (id != animal.AnimalID)
             {

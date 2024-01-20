@@ -43,7 +43,7 @@
             <!-- pętla -->
             @if (Model.AnimalsView.TextCount > 0)
             {
-                @foreach (var item in Model.Animals)
+                @foreach (var item in Model.Animals.Where(a => a.AdoptowanyPrzez == null))
                 {
                     <div class="card mt-2">
                         <div class="card-header">

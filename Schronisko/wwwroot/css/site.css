@@ -398,6 +398,7 @@ header.sticky {
     padding: 45px 45px 45px 45px;
     transition: ease .45s;
     cursor: pointer;
+    overflow-x: auto;
 }
 
 .row img{
@@ -643,4 +644,20 @@ header.sticky {
     .contact .action form input[type="email"] {
         width: 310px;
     }
+}
+.social-icons i {
+    font-size: 2em;
+    margin: 0 10px;
+    color: white;
+}
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+}
+.info {
+    width: 48%;
+}
+
+.map {
+    width: 48%;
 }
