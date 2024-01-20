@@ -55,7 +55,10 @@ namespace Schronisko.Controllers
                     .UserFormID;
             }
             ViewData["UserFormID"] = id;
-            //ViewData["UserFormID"] = _context.UserFormQuestions.FirstOrDefault(q => q.UserFormQuestionID == id).UserFormID;
+            ViewData["userForm"] = _context.UserForms
+                .Include("Questions").Include("Questions.QuestionType")
+                .Include("Questions.Options")//.Include("Questions.Options.OptionType")
+                .FirstOrDefault(f => (f.Active == true && f.FormType.Name == "Adopcja ogólny"));
             ViewData["Id"] = new SelectList(_context.AppUsers, "Id", "Id");
             return View();
         }
