@@ -161,6 +161,7 @@ namespace Schronisko.Controllers
             
                 // Pobierz listę e-maili użytkowników
             var emails = _userManager.Users.Select(u => u.Email).ToList();
+            emails.Insert(0, "");
             ViewBag.UsersEmails = new SelectList(emails);
 
             ViewData["AnimalTypeID"] = new SelectList(_context.AnimalTypes, "AnimalTypeID", "Name", animal.AnimalTypeID);
