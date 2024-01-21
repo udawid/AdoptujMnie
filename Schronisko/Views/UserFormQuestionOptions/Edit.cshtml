@@ -21,8 +21,18 @@
             </div>
             <div class="form-group">
                 <label asp-for="OptionText" class="control-label"></label>
-                <textarea asp-for="OptionText" class="form-control" />
+                <textarea asp-for="OptionText" class="form-control"></textarea>
                 <span asp-validation-for="OptionText" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Disqualifying" /> @Html.DisplayNameFor(model => model.Disqualifying)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Points" class="control-label"></label>
+                <input asp-for="Points" class="form-control" />
+                <span asp-validation-for="Points" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Zapisz" class="btn btn-primary" />

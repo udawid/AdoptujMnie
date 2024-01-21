@@ -67,7 +67,7 @@ namespace Schronisko.Controllers
         [Authorize(Roles = "admin, opiekun")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserFormQuestionOptionID,UserFormQuestionID,OptionOrder,OptionText,Id,AddedDate")] UserFormQuestionOption userFormQuestionOption)
+        public async Task<IActionResult> Create([Bind("UserFormQuestionOptionID,UserFormQuestionID,OptionOrder,OptionText,Id,AddedDate,Disqualifying,Points")] UserFormQuestionOption userFormQuestionOption)
         {
             if (ModelState.IsValid)
             {
@@ -124,7 +124,7 @@ namespace Schronisko.Controllers
         [Authorize(Roles = "admin, opiekun")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UserFormQuestionOptionID,UserFormQuestionID,OptionOrder,OptionText,Id,AddedDate")] UserFormQuestionOption userFormQuestionOption)
+        public async Task<IActionResult> Edit(int id, [Bind("UserFormQuestionOptionID,UserFormQuestionID,OptionOrder,OptionText,Id,AddedDate,Disqualifying,Points")] UserFormQuestionOption userFormQuestionOption)
         {
             if (id != userFormQuestionOption.UserFormQuestionOptionID)
             {

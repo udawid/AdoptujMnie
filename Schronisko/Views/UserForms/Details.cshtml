@@ -95,6 +95,8 @@
                         }
                     </td>
                     <td>
+                    @if (item.Description != null)
+                    {
                         @if (item.Description.Length <= 75)
                         {
                             @Html.DisplayFor(modelItem => item.Description)
@@ -103,6 +105,7 @@
                         {
                             @(item.Description.Substring(0, 75) + "...")
                         }
+                    }
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.QuestionType.Name)
@@ -126,9 +129,11 @@
                                         @Html.DisplayNameFor(model => model.Questions.First().Options.First().OptionText)
                                 </th>
                                 <th>
-                                        @Html.DisplayNameFor(model => model.Questions.First().Options.First().AddedDate)
+                                        @Html.DisplayNameFor(model => model.Questions.First().Options.First().Disqualifying)
                                 </th>
-                                <th></th>
+                                <th>
+                                        @Html.DisplayNameFor(model => model.Questions.First().Options.First().Points)
+                                </th>
     
                             </tr>
                         </thead>
@@ -150,9 +155,11 @@
                                         }
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.AddedDate)
+                                        @Html.DisplayFor(modelItem => item2.Disqualifying)
                                     </td>
-                                    <td></td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item2.Points)
+                                    </td>
                                 </tr>
                             }
                         </tbody>

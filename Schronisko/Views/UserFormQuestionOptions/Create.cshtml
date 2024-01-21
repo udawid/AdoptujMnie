@@ -31,6 +31,16 @@
                 <span asp-validation-for="OptionText" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Disqualifying" /> @Html.DisplayNameFor(model => model.Disqualifying)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Points" class="control-label"></label>
+                <input asp-for="Points" class="form-control" />
+                <span asp-validation-for="Points" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Dodaj" class="btn btn-primary" />
                 <a asp-controller="UserForms" asp-action="Edit" asp-route-id="@ViewBag.UserFormID" class="btn btn-light"> Powrót do ankiety </a>
             </div>

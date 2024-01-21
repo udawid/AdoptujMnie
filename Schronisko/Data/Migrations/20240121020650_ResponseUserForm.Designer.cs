@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Schronisko.Data;
 
@@ -11,9 +12,10 @@ using Schronisko.Data;
 namespace Schronisko.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240121020650_ResponseUserForm")]
+    partial class ResponseUserForm
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -550,12 +552,6 @@ namespace Schronisko.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("Points")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TotalPoints")
-                        .HasColumnType("int");
-
                     b.Property<int>("UserFormID")
                         .HasColumnType("int");
 
@@ -576,10 +572,25 @@ namespace Schronisko.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ResponseUserFormQuestionID"), 1L, 1);
 
+                    b.Property<string>("Description")
+                        .HasMaxLength(550)
+                        .HasColumnType("nvarchar(550)");
+
+                    b.Property<int?>("QuestionOrder")
+                        .HasColumnType("int");
+
+                    b.Property<string>("QuestionText")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
                     b.Property<int>("ResponseUserFormID")
                         .HasColumnType("int");
 
                     b.Property<int>("UserFormQuestionID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserFormQuestionTypeID")
                         .HasColumnType("int");
 
                     b.HasKey("ResponseUserFormQuestionID");
@@ -599,6 +610,14 @@ namespace Schronisko.Data.Migrations
 
                     b.Property<bool>("Checked")
                         .HasColumnType("bit");
+
+                    b.Property<int?>("OptionOrder")
+                        .HasColumnType("int");
+
+                    b.Property<string>("OptionText")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<int>("ResponseUserFormQuestionID")
                         .HasColumnType("int");

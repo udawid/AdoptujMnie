@@ -13,9 +13,9 @@
 <div class="container">
     <div class="row">
         <form asp-action="Edit">
-            @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="clearfix"></div>
-            <input type="hidden" asp-for="UserFormID" />*@
+            <input type="hidden" asp-for="UserFormID" />
             <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
@@ -103,13 +103,16 @@
                     }
                 </td>
                 <td>
-                    @if (item.Description.Length <= 75)
+                    @if (item.Description != null)
                     {
-                        @Html.DisplayFor(modelItem => item.Description)
-                    }
-                    else
-                    {
-                        @(item.Description.Substring(0, 75) + "...")
+                        @if (item.Description != null && item.Description.Length <= 75)
+                        {
+                            @Html.DisplayFor(modelItem => item.Description)
+                        }
+                        else
+                        {
+                            @(item.Description.Substring(0, 75) + "...")
+                        }
                     }
                 </td>
                 <td>
@@ -137,6 +140,12 @@
                             </th>
                             <th>
                                     @Html.DisplayNameFor(model => model.Questions.First().Options.First().OptionText)
+                            </th>
+                            <th>
+                                    @Html.DisplayNameFor(model => model.Questions.First().Options.First().Disqualifying)
+                            </th>
+                            <th>
+                                    @Html.DisplayNameFor(model => model.Questions.First().Options.First().Points)
                             </th>
                             @*<th>
                                     @Html.DisplayNameFor(model => model.Questions.First().Options.First().AddedDate)
@@ -167,15 +176,22 @@
                                     {
                                         @(item2.OptionText.Substring(0, 75) + "...")
                                     }
-                                </td>
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item2.Disqualifying)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item2.Points)
+                                    </td>
                                 @*<td>
                                     @Html.DisplayFor(modelItem => item.AddedDate)
                                 </td>*@
                                 <td>
-                                        @if (item.QuestionType.Name != "Tak/Nie" && item.QuestionType.Name != "TakNie")
-                                        {
                                             <a class="btn-small btn-outline-warning rounded-circle my-1" title="Edytuj" asp-controller="UserFormQuestionOptions" asp-action="Edit" asp-route-id="@item2.UserFormQuestionOptionID"><i class="bi-pencil" aria-label="Edycja"></i></a>
                                             @*                    <a class="btn btn-outline-primary rounded-circle my-1" title="Szczegóły" asp-controller="UserFormQuestionOptions" asp-action="Details" asp-route-id="@item.UserFormQuestionOptionID"><i class="bi-info-circle" aria-label="Szczegóły"></i></a>*@
+
+                                        @if (item.QuestionType.Name != "Tak/Nie" && item.QuestionType.Name != "TakNie")
+                                        {
                                             <a class="btn-small btn-outline-danger rounded-circle my-1" title="Usuń" asp-controller="UserFormQuestionOptions" asp-action="Delete" asp-route-id="@item2.UserFormQuestionOptionID"><i class="bi-x-circle" aria-label="Usuń"></i></a>
                                         }
                                     </td>

@@ -27,23 +27,23 @@ namespace Schronisko.Models
         //public virtual UserForm? Form { get; set; }
 
         //[Required(ErrorMessage = "Proszę podać pozycję pytania na ankiecie: ")]
-        [Display(Name = "Pozycja pytania: ")]
-        public int? QuestionOrder { get; set; }
+        //[Display(Name = "Pozycja pytania: ")]
+        //public int? QuestionOrder { get; set; }
 
-        [Required(ErrorMessage = "Proszę podać treść pytania: ")]
-        [Display(Name = "Treść pytania: ")]
-        [MaxLength(250, ErrorMessage = "Treść pytania nie może być dłuższe niż 250 znaków.")]
-        public string? QuestionText { get; set; }
+        //[Required(ErrorMessage = "Proszę podać treść pytania: ")]
+        //[Display(Name = "Treść pytania: ")]
+        //[MaxLength(250, ErrorMessage = "Treść pytania nie może być dłuższe niż 250 znaków.")]
+        //public string? QuestionText { get; set; }
 
-        //dodatkowy opis dostępny tylko dla administratora
-        [Display(Name = "Dodatkowy opis pytania: ")]
-        [MaxLength(550, ErrorMessage = "Opis pytania nie może być dłuższe niż 550 znaków.")]
-        public string? Description { get; set; }
+        ////dodatkowy opis dostępny tylko dla administratora
+        //[Display(Name = "Dodatkowy opis pytania: ")]
+        //[MaxLength(550, ErrorMessage = "Opis pytania nie może być dłuższe niż 550 znaków.")]
+        //public string? Description { get; set; }
 
-        [Required(ErrorMessage = "Proszę podać typ pytania: ")]
-        [Display(Name = "Typ pytania: ")]
-        [DefaultValue(1)]
-        public int UserFormQuestionTypeID { get; set; }
+        //[Required(ErrorMessage = "Proszę podać typ pytania: ")]
+        //[Display(Name = "Typ pytania: ")]
+        //[DefaultValue(1)]
+        //public int UserFormQuestionTypeID { get; set; }
         //[ForeignKey("UserFormQuestionTypeID")]
         //public virtual UserFormQuestionType? QuestionType { get; set; }
 

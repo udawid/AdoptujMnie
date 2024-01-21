@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -20,9 +21,11 @@ namespace Schronisko.Controllers
         }
 
         // GET: ResponseUserForms
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
-            var applicationDbContext = _context.ResponseUserForms.Include(r => r.User);
+            ViewData["userFormName"] = _context.UserForms.FirstOrDefault(f => f.UserFormID == id).Name;
+
+            var applicationDbContext = _context.ResponseUserForms.Where(r => r.UserFormID==id).Include(r => r.User);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -58,7 +61,7 @@ namespace Schronisko.Controllers
             ViewData["userForm"] = _context.UserForms
                 .Include("Questions").Include("Questions.QuestionType")
                 .Include("Questions.Options")//.Include("Questions.Options.OptionType")
-                .FirstOrDefault(f => (f.Active == true && f.FormType.Name == "Adopcja ogólny"));
+                .FirstOrDefault(f => f.UserFormID == id);
             ViewData["Id"] = new SelectList(_context.AppUsers, "Id", "Id");
             return View();
         }
@@ -67,17 +70,56 @@ namespace Schronisko.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ResponseUserFormID,UserFormID,Name,Title,Description,UserFormTypeID,Id,AddedDate")] ResponseUserForm responseUserForm)
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(List<int> ids, List<string> values, int userFormID)//[Bind("ResponseUserFormID,UserFormID,Name,Title,Description,UserFormTypeID,Id,AddedDate")] ResponseUserForm responseUserForm)
         {
-            if (ModelState.IsValid)
+            //if (ModelState.IsValid)
+            //{
+            //    _context.Add(responseUserForm);
+            //    await _context.SaveChangesAsync();
+            //    return RedirectToAction(nameof(Index));
+            //}
+            //ViewData["Id"] = new SelectList(_context.AppUsers, "Id", "Id", responseUserForm.Id);
+            //return View(responseUserForm);
+
+            var userForm = _context.UserForms
+                .Include("Questions").Include("Questions.QuestionType")
+                .Include("Questions.Options")//.Include("Questions.Options.OptionType")
+                .FirstOrDefault(f => f.UserFormID == userFormID);
+
+            var responseUserForm = new ResponseUserForm();
+            responseUserForm.Id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            responseUserForm.UserFormID = userFormID;
+            responseUserForm.AddedDate = DateTime.Now;
+            _context.ResponseUserForms.Add(responseUserForm);
+            _context.SaveChanges();
+            foreach (var question in userForm.Questions)
             {
-                _context.Add(responseUserForm);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                var responseQuestion = new ResponseUserFormQuestion();
+                responseQuestion.ResponseUserFormID = responseUserForm.ResponseUserFormID;
+                responseQuestion.UserFormQuestionID = question.UserFormQuestionID;
+                _context.Add(responseQuestion);
+                _context.SaveChanges();
+
+                foreach (var option in question.Options)
+                {
+                    var responseOption = new ResponseUserFormQuestionOption();
+                    responseOption.UserFormQuestionOptionID = option.UserFormQuestionOptionID;
+                    responseOption.ResponseUserFormQuestionID = responseQuestion.ResponseUserFormQuestionID;
+                    responseOption.Checked = ids.Contains(responseOption.UserFormQuestionOptionID);
+                    if (option.Points != null) responseUserForm.TotalPoints += option.Points.Value;
+                    if (responseOption.Checked)
+                    {
+                        if (option.Disqualifying) responseUserForm.Points = -100;
+                        if (option.Points != null && responseUserForm.Points >= 0) responseUserForm.Points += option.Points.Value;
+                    }
+                    _context.Add(responseOption);
+                    await _context.SaveChangesAsync();
+                }
             }
-            ViewData["Id"] = new SelectList(_context.AppUsers, "Id", "Id", responseUserForm.Id);
-            return View(responseUserForm);
+
+            //return RedirectToAction("Index", "Home");
+            return Json(new { result = "Redirect", url = Url.Action("Index", "Home") });
         }
 
         // GET: ResponseUserForms/Edit/5

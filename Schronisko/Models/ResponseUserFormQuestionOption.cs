@@ -20,21 +20,21 @@ namespace Schronisko.Models
         [Display(Name = "Identyfikator opcji: ")]
         public int UserFormQuestionOptionID { get; set; }
 
-        ////Pytanie, do którego zostanie przypisane pytanie
-        //[Required(ErrorMessage = "Proszę podać ID pytania: ")]
-        //[Display(Name = "Pytanie: ")]
-        //public int UserFormQuestionID { get; set; }
-        //[ForeignKey("UserFormQuestionID")]
-        //public virtual UserFormQuestion? Question { get; set; }
+        //////Pytanie, do którego zostanie przypisane pytanie
+        ////[Required(ErrorMessage = "Proszę podać ID pytania: ")]
+        ////[Display(Name = "Pytanie: ")]
+        ////public int UserFormQuestionID { get; set; }
+        ////[ForeignKey("UserFormQuestionID")]
+        ////public virtual UserFormQuestion? Question { get; set; }
 
-        //[Required(ErrorMessage = "Proszę podać pozycję odpowiedzi na ankiecie: ")]
-        [Display(Name = "Pozycja opcji: ")]
-        public int? OptionOrder { get; set; }
+        ////[Required(ErrorMessage = "Proszę podać pozycję odpowiedzi na ankiecie: ")]
+        //[Display(Name = "Pozycja opcji: ")]
+        //public int? OptionOrder { get; set; }
 
-        [Required(ErrorMessage = "Proszę podać treść opcji: ")]
-        [Display(Name = "Treść opcji: ")]
-        [MaxLength(250, ErrorMessage = "Treść opcji nie może być dłuższe niż 250 znaków.")]
-        public string? OptionText { get; set; }
+        //[Required(ErrorMessage = "Proszę podać treść opcji: ")]
+        //[Display(Name = "Treść opcji: ")]
+        //[MaxLength(250, ErrorMessage = "Treść opcji nie może być dłuższe niż 250 znaków.")]
+        //public string? OptionText { get; set; }
 
         //END - kopia pól z UserFormQuestionOption, ponieważ UserFormQuestionOption może być edytowany
 
