@@ -57,6 +57,10 @@ namespace Schronisko.Models
         [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}")]
         public System.DateTime AddedDate { get; set; }
 
+        [Display(Name = "Adoptowany przez:")]
+        [DefaultValue(null)]
+        public string? AdoptowanyPrzez { get; set; }
+
 
         //lista wszystkich komentarzy zwierzęcia
         public virtual List<Comment>? Comments { get; set; }
