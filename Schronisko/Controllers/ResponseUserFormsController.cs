@@ -37,13 +37,21 @@ namespace Schronisko.Controllers
                 return NotFound();
             }
 
-            var responseUserForm = await _context.ResponseUserForms
-                .Include(r => r.User)
-                .FirstOrDefaultAsync(m => m.ResponseUserFormID == id);
+            var responseUserForm = _context.ResponseUserForms
+                .Include("ResponseQuestions")
+                .Include("ResponseQuestions.ResponseOptions")
+                .FirstOrDefault(f => f.ResponseUserFormID == id);
             if (responseUserForm == null)
             {
                 return NotFound();
             }
+
+            ViewData["ResponseUserFormID"] = id;
+            ViewData["responseUserForm"] = responseUserForm;
+            ViewData["userForm"] = _context.UserForms
+                .Include("Questions").Include("Questions.QuestionType")
+                .Include("Questions.Options")//.Include("Questions.Options.OptionType")
+                .FirstOrDefault(f => f.UserFormID == responseUserForm.UserFormID);
 
             return View(responseUserForm);
         }
