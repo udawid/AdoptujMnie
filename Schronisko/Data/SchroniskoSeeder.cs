@@ -22,6 +22,7 @@ namespace Schronisko.Data
                     SeedAnnouncement(dbContext);
                     SeedUserFormTypes(dbContext);
                     SeedUserFormQuestionTypes(dbContext);
+                    SeedUserForms(dbContext);
                 }
             }
         }
@@ -247,7 +248,9 @@ namespace Schronisko.Data
                 var types = new List<UserFormType>
                 {
                     new UserFormType { Name = "Adopcja ogólny", Active = true}, //formularz adopcyjny ogólnodostępny/uniwersalny
-                    new UserFormType { Name = "Adopcja wybrane zwierze", Active = true}, //formularz przypisany do wybranego zwierzęcia
+                                                                                //dostępny na ekranie głównym
+                                                                                //i na ekranie zwierząt bez przypisania dedykowanej ankiety
+                    new UserFormType { Name = "Adopcja wybrane zwierzę", Active = true}, //formularz przypisany do wybranego zwierzęcia
                                                                                             //np. inne dla psów, a inne dla kotów,
                                                                                             //dla zwierząt ktore nie tolerują innych zwierząt, dzieci,
                                                                                             //czy wymagających specjalnej opieki
@@ -268,7 +271,7 @@ namespace Schronisko.Data
                 {  // planowane wartości: 'YesNo', 'YesNoOther', 'ChooseOne', 'ChooseMultiple', 'OpenQuestion'
                     new UserFormQuestionType { Name = "Tak/Nie", Active = true},
                     new UserFormQuestionType { Name = "Tak/Nie/Inne", Active = false}, //aktualnie nie wspierana, do zaimplementowanie przy rozbudowie formularza
-                    new UserFormQuestionType { Name = "Wybierz jedną opcją", Active = true},
+                    new UserFormQuestionType { Name = "Wybierz jedną opcję", Active = true},
                     new UserFormQuestionType { Name = "Wybierz wiele opcji", Active = true},
                     new UserFormQuestionType { Name = "Pytanie otwarte", Active = false}, //aktualnie nie wspierana, do zaimplementowanie przy rozbudowie formularza
                     
@@ -277,5 +280,174 @@ namespace Schronisko.Data
                 dbContext.SaveChanges();
             }
         } //koniec danych typu pytania
+
+
+        //dodawanie ankiet "startowych" - administratorzy systemu mogę edytować te ankiety i dodawać nowe
+        private static void SeedUserForms(ApplicationDbContext dbContext)
+        {
+
+            if (!dbContext.UserForms.Any())
+            {
+                var userFormAOTypeID = dbContext.UserFormTypes.FirstOrDefault(t => t.Name == "Adopcja ogólny").FormTypeID;
+                var userFormAZTypeID = dbContext.UserFormTypes.FirstOrDefault(t => t.Name == "Adopcja wybrane zwierzę").FormTypeID;
+                var questionYesNoTypeID = dbContext.UserFormQuestionTypes.FirstOrDefault(t => t.Name == "Tak/Nie").UserFormQuestionTypeID;
+                var questionChooseOneTypeID = dbContext.UserFormQuestionTypes.FirstOrDefault(t => t.Name == "Wybierz jedną opcję").UserFormQuestionTypeID;
+                var questionChooseMultipleTypeID = dbContext.UserFormQuestionTypes.FirstOrDefault(t => t.Name == "Wybierz wiele opcji").UserFormQuestionTypeID;
+
+
+                //dodanie ankiety adopcyjnej ogólnej
+                {
+
+                    var userForm = new UserForm
+                    {
+                        Name = "Ankieta ogólna na stronę główną",
+                        Title = "Ankieta adopcyjna",
+                        Description = "Ankieta adopcyjna na stronę główną i dla zwierząt bez dedykowanej ankiety",
+                        UserFormTypeID = userFormAOTypeID,
+
+                        Active = true,
+                        AddedDate = DateTime.Now
+                    };
+                    dbContext.Add(userForm);
+                    dbContext.SaveChanges();
+
+                    //dodanie pytań w ankiecie
+                    {
+                        int orderQ = 1;
+
+                        var questionId =
+                            AddQuestion(dbContext, userForm.UserFormID, orderQ++
+                                , questionChooseMultipleTypeID, "Jaki rodzaj zwierzęcia chciałbyś/chciałabyś adoptować?", "");
+                        //dodanie opcji pytania
+                        int orderO = 1;
+                        AddQuestionOption(dbContext, questionId, orderO++, 0, false, "pies");
+                        AddQuestionOption(dbContext, questionId, orderO++, 0, false, "kot");
+                        AddQuestionOption(dbContext, questionId, orderO++, 0, false, "chomik");
+                        AddQuestionOption(dbContext, questionId, orderO++, 0, false, "królik");
+                        AddQuestionOption(dbContext, questionId, orderO++, 0, false, "inne");
+
+
+
+                        //następne pytanie
+                        questionId =
+                            AddQuestion(dbContext, userForm.UserFormID, orderQ++
+                                , questionChooseMultipleTypeID
+                                , "Czy miałeś/miałaś wcześniej zwierzęta domowe?", "");
+                        //dodanie opcji pytania
+                        orderO = 1;
+                        AddQuestionOption(dbContext, questionId, orderO++, 0, false, "nie miałem");
+                        AddQuestionOption(dbContext, questionId, orderO++, 10, false, "kota");
+                        AddQuestionOption(dbContext, questionId, orderO++, 10, false, "psa");
+                        AddQuestionOption(dbContext, questionId, orderO++, 5, false, "inne zwierzę");
+
+                        //następne pytanie
+                        questionId =
+                            AddQuestion(dbContext, userForm.UserFormID, orderQ++
+                                , questionChooseOneTypeID
+                                , "Czy w domu są dzieci?", "");
+                        //dodanie opcji pytania
+                        orderO = 1;
+                        AddQuestionOption(dbContext, questionId, orderO++, 0, false, "tak, do 5 roku życia");
+                        AddQuestionOption(dbContext, questionId, orderO++, 0, false, "tak, w wieku 5-10 lat");
+                        AddQuestionOption(dbContext, questionId, orderO++, 0, false, "tak, nastolatki");
+                        AddQuestionOption(dbContext, questionId, orderO++, 0, false, "nie");
+
+                        //następne pytanie
+                        questionId =
+                            AddQuestion(dbContext, userForm.UserFormID, orderQ++
+                                , questionYesNoTypeID
+                                , "Czy w domu ktoś ma alergię na zwierzęta?", "");
+                        //dodanie opcji pytania
+                        orderO = 1;
+                        AddQuestionOption(dbContext, questionId, orderO++, -100, true, "tak");
+                        AddQuestionOption(dbContext, questionId, orderO++, 10, false, "nie");
+
+                        //następne pytanie
+                        questionId =
+                            AddQuestion(dbContext, userForm.UserFormID, orderQ++
+                                , questionChooseOneTypeID
+                                , "Gdzie będzie trzymany zwierzak?", "");
+                        //dodanie opcji pytania
+                        orderO = 1;
+                        AddQuestionOption(dbContext, questionId, orderO++, 0, false, "w domu");
+                        AddQuestionOption(dbContext, questionId, orderO++, -100, true, "w budzie");
+                        AddQuestionOption(dbContext, questionId, orderO++, -100, true, "na łańcuchu");
+                        AddQuestionOption(dbContext, questionId, orderO++, 0, false, "w pomieszczeniu gospodarczym");
+
+                        //następne pytanie
+                        questionId =
+                            AddQuestion(dbContext, userForm.UserFormID, orderQ++
+                                , questionChooseOneTypeID
+                                , "Jak często planujesz wyprowadzać psa na spacer?", "");
+                        //dodanie opcji pytania
+                        orderO = 1;
+                        AddQuestionOption(dbContext, questionId, orderO++, -100, true, "nigdy");
+                        AddQuestionOption(dbContext, questionId, orderO++, -50, false, "mniej niż 1 raz dziennie");
+                        AddQuestionOption(dbContext, questionId, orderO++, 10, false, "1-2 razy dziennie");
+                        AddQuestionOption(dbContext, questionId, orderO++, 20, false, "> 2 razy dziennie");
+
+                        //następne pytanie
+                        questionId =
+                            AddQuestion(dbContext, userForm.UserFormID, orderQ++
+                                , questionYesNoTypeID
+                                , "Czy zgadzasz się na wizyty kontrolne przed i po adopcji?", "");
+                        //dodanie opcji pytania
+                        orderO = 1;
+                        AddQuestionOption(dbContext, questionId, orderO++, 20, false, "tak");
+                        AddQuestionOption(dbContext, questionId, orderO++, -100, true, "nie");
+
+                        //następne pytanie
+                        questionId =
+                            AddQuestion(dbContext, userForm.UserFormID, orderQ++
+                                , questionYesNoTypeID
+                                , "Czy jesteś gotów uczestniczyć w szkoleniu dla adoptujących zwierzęta?", "");
+                        //dodanie opcji pytania
+                        orderO = 1;
+                        AddQuestionOption(dbContext, questionId, orderO++, 10, false, "tak");
+                        AddQuestionOption(dbContext, questionId, orderO++, 0, false, "nie");
+                    }
+                    //end dodanie pytań w ankiecie
+                }
+                //dodanie ankiety adopcyjnej ogólnej
+
+
+            }
+        } //koniec ankiet startowych
+
+        private static int AddQuestion(ApplicationDbContext dbContext, int userFormID, int order, int type, string text, string description)
+        {
+            var userFormQuestion = new UserFormQuestion
+            {
+                UserFormID = userFormID,
+                QuestionOrder = order,
+                UserFormQuestionTypeID = type,
+                QuestionText = text,
+                Description = description,
+
+
+                AddedDate = DateTime.Now
+            };
+
+            dbContext.Add(userFormQuestion);
+            dbContext.SaveChanges();
+
+            return userFormQuestion.UserFormQuestionID;
+        }
+
+        private static void AddQuestionOption(ApplicationDbContext dbContext, int questionID, int order, int points, bool disq, string text)
+        {
+            var option = new UserFormQuestionOption
+            {
+                OptionOrder = order,
+                Points = points,
+                Disqualifying = disq,
+                OptionText = text,
+
+                UserFormQuestionID = questionID,
+                AddedDate = DateTime.Now
+            };
+            dbContext.Add(option);
+            dbContext.SaveChanges();
+        }
     }
 }

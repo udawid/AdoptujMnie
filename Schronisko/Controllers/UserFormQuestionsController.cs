@@ -88,7 +88,7 @@ namespace Schronisko.Controllers
                 {
                     var optionYes = new UserFormQuestionOption();
                     optionYes.OptionOrder = 1;
-                    optionYes.OptionText = "Tak";
+                    optionYes.OptionText = "tak";
                     optionYes.UserFormQuestionID = userFormQuestion.UserFormQuestionID;
                     optionYes.Id = User.FindFirstValue(ClaimTypes.NameIdentifier);
                     optionYes.AddedDate = DateTime.Now;
@@ -97,7 +97,7 @@ namespace Schronisko.Controllers
 
                     var optionNo = new UserFormQuestionOption();
                     optionNo.OptionOrder = 1;
-                    optionNo.OptionText = "Nie";
+                    optionNo.OptionText = "nie";
                     optionNo.UserFormQuestionID = userFormQuestion.UserFormQuestionID;
                     optionNo.Id = User.FindFirstValue(ClaimTypes.NameIdentifier);
                     optionNo.AddedDate = DateTime.Now;

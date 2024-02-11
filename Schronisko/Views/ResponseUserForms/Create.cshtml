@@ -24,7 +24,7 @@
                     <p class="fw-bold">@item.QuestionText</p>
                     @*<td>@item.QuestionText</td>*@
     
-                        @if (item.QuestionType.Name == "Tak / Nie" || item.QuestionType.Name == "Tak/Nie" || item.QuestionType.Name     == "Wybierz jedną opcją")
+                        @if (item.QuestionType.Name == "Tak / Nie" || item.QuestionType.Name == "Tak/Nie" || item.QuestionType.Name     == "Wybierz jedną opcję")
                         {
                             foreach (var option in item.Options.OrderBy(o => o.OptionOrder))
                             {
