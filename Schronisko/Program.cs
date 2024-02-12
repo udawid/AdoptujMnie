@@ -20,6 +20,13 @@ builder.Services.AddScoped<SignInManager<AppUser>>();
 
 builder.Services.AddControllersWithViews();
 
+builder.Services.Configure<CookiePolicyOptions>(options =>
+{
+    options.CheckConsentNeeded = context => true;
+    options.MinimumSameSitePolicy = SameSiteMode.None;
+});
+
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -42,6 +49,8 @@ else
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseCookiePolicy();
 
 app.UseRouting();
 
