@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
     <None Include="compilerconfig.json" />
     <None Include="wwwroot\graphic\img\5535149.ai" />
     <None Include="wwwroot\graphic\img\5535150.eps" />
