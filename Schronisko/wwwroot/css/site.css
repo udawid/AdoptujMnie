@@ -695,3 +695,9 @@ header.sticky {
 .map {
     width: 48%;
 }
+
+.card-title {
+    color: var(--main-color);
+    font-size: 20px;
+    font-weight: 500;
+}
