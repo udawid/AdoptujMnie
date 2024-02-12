@@ -24,7 +24,7 @@
                                 <input type="text" class="form-control" id="Phrase" name="Phrase" placeholder="Szukany ciąg" value="@Model.AnnouncementsView?.Phrase">
                             </div>
 
-                            <button type="submit" class="btn btn-primary mt-4 col-auto">Filtruj</button>
+                            <button type="submit" class="btn mt-4 col-auto">Filtruj</button>
 
                         </div>
                     }
@@ -51,16 +51,16 @@
                                 <h6><p class="card-text fst-italic">@item.AnnouncementText</p></h6>
                                 <p class="card-text">
                                     <small class="text-muted">
-                                        Opublikowano: @item.AddedDate
+                                        Opublikowano: @item.AddedDate.ToString("dd-MM-yyyy HH:mm:ss")
                                     </small>
                                 </p>
                                 <p class="card-text">
                                     <small class="text-muted">
-                                        Przez: @item.Id
+                                        Przez: @item.User
                                     </small>
                                 </p>
                                 <div class="position-relative">
-                                    <a href="@Url.Action("Details", "Announcements", new{id = item.AnnouncementID})" class="btn btn-outline-primary position-absolute bottom-0 end-0">Czytaj >>></a>
+                                    <a href="@Url.Action("Details", "Announcements", new{id = item.AnnouncementID})" class="btn">Więcej informacji</a>
                                 </div>
                             </div>
                         </div>

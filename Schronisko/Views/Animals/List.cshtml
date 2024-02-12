@@ -29,7 +29,7 @@
                                 <input type="text" class="form-control" id="Phrase" name="Phrase" placeholder="Szukany ciąg" value="@Model.AnimalsView?.Phrase">
                             </div>
 
-                            <button type="submit" class="btn">Filtruj</button>
+                            <button type="submit" class="btn mt-4 col-auto">Filtruj</button>
                     
                         </div>
                     }
@@ -56,10 +56,10 @@
                                 *@                    </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h5 class="card-title text-success">@item.Name</h5>
+                                    <h5 class="card-title">@item.Name</h5>
                                     <p class="card-text fst-italic">@item.Description</p>
                                     <p class="card-text"><small class="text-muted"> 
-                                            Opublikowano: @item.AddedDate</small></p>
+                                            Opublikowano: @item.AddedDate.ToString("dd-MM-yyyy HH:mm:ss")</small></p>
                                     <div class="position-relative">
                                         <a href="@Url.Action("Details", "Animals", new{id = item.AnimalID})" class="btn">Więcej informacji</a>
                                     </div>

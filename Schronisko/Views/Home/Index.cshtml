@@ -123,10 +123,10 @@
         <div class="service-content">
 		@foreach (var item in Model.DisplayAnnouncements)
         {
-            <div class="row r">
+            <div class="row rj r">
 		    <img src="~/graphic/Announcement/@item.Photo">
 			<h3>ZGUBIONO</h3>
-			<h5>Data dodania: <span>@item.AddedDate</span></h5>
+			<h5>Data dodania: <span>@item.AddedDate.ToString("dd-MM-yyyy")</span></h5>
 			<p>@item.AnnouncementText</p>
 		    </div>
         }
