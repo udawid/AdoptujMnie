@@ -168,7 +168,7 @@
 
 
 	@{
-		int animalsCount = _context.Animals.Count(animal => animal.Dostepnosc == true && animal.AdoptowanyPrzez == null);
+		int animalsCount = _context.Animals.Count(animal => animal.Dostepnosc == true || animal.Dostepnosc == null);
 		int announcementsCount = _context.Announcements.Count(announcement => announcement.Status == "Znaleziony" || announcement.Status == null);
 		int adoptionCount = _context.Animals.Count(animal => animal.AdoptowanyPrzez != null);
 	}
