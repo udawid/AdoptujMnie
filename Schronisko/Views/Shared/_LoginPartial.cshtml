@@ -21,7 +21,8 @@
         <ul class="dropdown-menu">
             <li class="nav-item">
                 <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                    <button class="logout" type="submit">Wyloguj!</button>
+                    <button class="logout" type="submit" style="display: none;">Wyloguj!</button>
+                    <a href="#" onclick="document.forms[0].submit(); return false;">Wyloguj!</a>
                 </form>
             </li>
         </ul>

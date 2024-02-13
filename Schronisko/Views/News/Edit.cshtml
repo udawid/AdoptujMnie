@@ -6,7 +6,7 @@
     var imagePath = "";
 }
 
-<h1 class="text-primary oswald">Edycja aktualności</h1>
+
 
 @*@{  WebImage photo = null;
 
@@ -23,10 +23,12 @@
     }
 }*@
 
-<h3><b>Aktualności</b></h3>
-<hr />
 <div class="row">
-    <div class="col-md-4 interspace">
+<h1 class="oswald">Edycja aktualności</h1>
+<h4><b>Aktualności</b></h4>
+<hr />
+
+    <div class="col-md-6 interspace">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="NewsID" />
