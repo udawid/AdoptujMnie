@@ -20,7 +20,6 @@ builder.Services.AddScoped<SignInManager<AppUser>>();
 
 builder.Services.AddControllersWithViews();
 
-// cookies
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
     options.CheckConsentNeeded = context => true;
