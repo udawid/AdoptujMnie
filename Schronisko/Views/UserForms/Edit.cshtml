@@ -123,8 +123,8 @@
                 </td>*@
                 <td>
                     <a class="btn-small btn-outline-warning rounded-circle my-1" title="Edytuj" asp-controller="UserFormQuestions" asp-action="Edit" asp-route-id="@item.UserFormQuestionID"><i class="bi-pencil" aria-label="Edycja"></i></a>
-                    @*<a class="btn btn-outline-primary rounded-circle my-1" title="Szczegóły" asp-controller="UserFormQuestions" asp-action="Details" asp-route-id="@item.UserFormQuestionID"><i class="bi-info-circle" aria-label="Szczegóły"></i></a>*@
-                    <a class="btn-small btn-outline-danger rounded-circle my-1" title="Usuń" asp-controller="UserFormQuestions" asp-action="Delete" asp-route-id="@item.UserFormQuestionID"><i class="bi-x-circle" aria-label="Usuń"></i></a>
+                    @*<a class="btn btn-outline-primary rounded-circle my-1" title="Szczegóły" asp-controller="UserFormQuestions" asp-action="Details" asp-route-id="@item.UserFormQuestionID"><i class="bi-info" aria-label="Szczegóły"></i></a>*@
+                    <a class="btn-small btn-outline-danger rounded-circle my-1" title="Usuń" asp-controller="UserFormQuestions" asp-action="Delete" asp-route-id="@item.UserFormQuestionID"><i class="bi-x" aria-label="Usuń"></i></a>
                 </td>
             </tr>
             <tr>
@@ -188,11 +188,11 @@
                                 </td>*@
                                 <td>
                                             <a class="btn-small btn-outline-warning rounded-circle my-1" title="Edytuj" asp-controller="UserFormQuestionOptions" asp-action="Edit" asp-route-id="@item2.UserFormQuestionOptionID"><i class="bi-pencil" aria-label="Edycja"></i></a>
-                                            @*                    <a class="btn btn-outline-primary rounded-circle my-1" title="Szczegóły" asp-controller="UserFormQuestionOptions" asp-action="Details" asp-route-id="@item.UserFormQuestionOptionID"><i class="bi-info-circle" aria-label="Szczegóły"></i></a>*@
+                                            @*                    <a class="btn btn-outline-primary rounded-circle my-1" title="Szczegóły" asp-controller="UserFormQuestionOptions" asp-action="Details" asp-route-id="@item.UserFormQuestionOptionID"><i class="bi-info" aria-label="Szczegóły"></i></a>*@
 
                                         @if (item.QuestionType.Name != "Tak/Nie" && item.QuestionType.Name != "TakNie")
                                         {
-                                            <a class="btn-small btn-outline-danger rounded-circle my-1" title="Usuń" asp-controller="UserFormQuestionOptions" asp-action="Delete" asp-route-id="@item2.UserFormQuestionOptionID"><i class="bi-x-circle" aria-label="Usuń"></i></a>
+                                            <a class="btn-small btn-outline-danger rounded-circle my-1" title="Usuń" asp-controller="UserFormQuestionOptions" asp-action="Delete" asp-route-id="@item2.UserFormQuestionOptionID"><i class="bi-x" aria-label="Usuń"></i></a>
                                         }
                                     </td>
                             </tr>
