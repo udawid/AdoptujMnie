@@ -115,7 +115,7 @@ namespace Schronisko.Controllers
                     responseOption.UserFormQuestionOptionID = option.UserFormQuestionOptionID;
                     responseOption.ResponseUserFormQuestionID = responseQuestion.ResponseUserFormQuestionID;
                     responseOption.Checked = ids.Contains(responseOption.UserFormQuestionOptionID);
-                    if (option.Points != null) responseUserForm.TotalPoints += option.Points.Value;
+                    if (option.Points != null && responseUserForm.Points >= 0) responseUserForm.TotalPoints += option.Points.Value;
                     if (responseOption.Checked)
                     {
                         if (option.Disqualifying) responseUserForm.Points = -100;
