@@ -61,7 +61,7 @@ namespace Schronisko.Controllers
 
             var statusList = new List<SelectListItem>();
             statusList.Add(new SelectListItem("Zaginione", "Zaginione"));
-            statusList.Add(new SelectListItem("Znaleziono", "Znaleziono"));
+            statusList.Add(new SelectListItem("Znalezione", "Znalezione"));
 
             ViewData["Status"] = new SelectList(statusList, "Value", "Text", Status);
 

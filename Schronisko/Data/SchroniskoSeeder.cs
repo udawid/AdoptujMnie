@@ -53,7 +53,7 @@ namespace Schronisko.Data
                     },
                     new Announcement
                     {
-                        Title = "Znaleziono",
+                        Title = "Znalezione",
                         AnnouncementText = "Sunia widziana od kilku dni, zawekowała  się na opuszczonej działce. Obecnie przebywa pod opieką u pani, która ją zabezpieczyła. Wszelkie informację o kontakcie posiada administracja strony",
                         Type = "Dodane: ",
                         Status = "Aktywne",
