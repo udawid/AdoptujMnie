@@ -35,7 +35,7 @@ namespace Schronisko.Data
                 {
                     new Announcement
                     {
-                        Title = "Zgubiono",
+                        Title = "Zaginione",
                         AnnouncementText ="25 stycznia uciekł mały czarny kotek w okolicach ulicy Warszawskiej w miejscowości Sanniki. Jego szczególnym znakiem jest biała plamka na czubku ogona. Prosimy o kontakt na telefon: 567 891 023",
                         Type = "Dodane: ",
                         Status = "Aktywne",
@@ -44,7 +44,7 @@ namespace Schronisko.Data
                     },
                     new Announcement
                     {
-                        Title = "Zgubiono",
+                        Title = "Zaginione",
                         AnnouncementText = "Dzisiaj ok godziny 21, wystraszyła się huku i uciekła suczka adoptowana trzy dni temu. Nazywa się Perełka. Pobiegła prawdopodobnie wzdłuż Grochowskiej. Przy obroży ma charakterystyczną zawieszkę.",
                         Type = "Dodane: ",
                         Status = "Aktywne",
