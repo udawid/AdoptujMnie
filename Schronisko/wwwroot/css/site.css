@@ -710,3 +710,7 @@ header.sticky {
 .logout {
     text-decoration: none;
 }
+
+#cookieConsent {
+    margin-top: 5%
+}
