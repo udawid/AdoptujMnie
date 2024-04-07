@@ -62,15 +62,19 @@
                 @Html.DisplayFor(modelItem => item.User.Id)
             </td>
             <td>
-                <img src="@Url.Content(item.Photo == null ? "~/graphic/Announcement/brak.jpg" :"~/graphic/Announcement/"+item.Photo)" width="150" alt=@item.Title />
+                <img src="@Url.Content(item.Photo == null ? "~/graphic/Announcement/brak.jpg" :"~/graphic/Announcement/"+item.Photo)"
+                width="150" alt=@item.Title />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AddedDate)
             </td>
                 <td>
-                    <a class="btn btn-outline-warning rounded-circle my-1" title="Edytuj" asp-action="Edit" asp-route-id="@item.AnnouncementID"><i class="bi-pencil" aria-label="Edycja aktualności"></i></a>
-                    <a class="btn btn-outline-primary rounded-circle my-1" title="Szczegóły" asp-action="Details" asp-route-id="@item.AnnouncementID"><i class="bi-info" aria-label="Szczegóły aktualności"></i></a>
-                    <a class="btn btn-outline-danger rounded-circle my-1" title="Usuń" asp-action="Delete" asp-route-id="@item.AnnouncementID"><i class="bi-x" aria-label="Usuń aktualność"></i></a>
+                    <a class="btn btn-outline-warning rounded-circle my-1" title="Edytuj" asp-action="Edit" 
+                    asp-route-id="@item.AnnouncementID"><i class="bi-pencil" aria-label="Edycja aktualności"></i></a>
+                    <a class="btn btn-outline-primary rounded-circle my-1" title="Szczegóły" asp-action="Details" 
+                    asp-route-id="@item.AnnouncementID"><i class="bi-info" aria-label="Szczegóły aktualności"></i></a>
+                    <a class="btn btn-outline-danger rounded-circle my-1" title="Usuń" asp-action="Delete" 
+                    asp-route-id="@item.AnnouncementID"><i class="bi-x" aria-label="Usuń aktualność"></i></a>
                 </td>
         </tr>
 }

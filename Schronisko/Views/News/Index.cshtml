@@ -57,7 +57,8 @@
                 @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
-               <img src="@Url.Content(item.Photo == null ? "~/graphic/News/brak.jpg" :"~/graphic/News/"+item.Photo)" width="150" alt=@item.Title />
+               <img src="@Url.Content(item.Photo == null ? "~/graphic/News/brak.jpg" :"~/graphic/News/"+item.Photo)" 
+               width="150" alt=@item.Title />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AddedDate)

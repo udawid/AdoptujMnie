@@ -111,7 +111,8 @@ namespace Schronisko.Data
                     new Animal
                     {
                         Name = "Burek",
-                        Description = "Burek to śliczny, pięcioletni jamniczek, który trafił do nas po śmierci swojej Pani. Jest bardzo grzecznym pieskiem, kocha ludzi i umie chodzić na smyczy. Nauczony załatwiać swoje potrzeby tam gdzie powinien :)",
+                        Description = "Burek to śliczny, pięcioletni jamniczek, który trafił do nas po śmierci swojej Pani. " +
+                        "Jest bardzo grzecznym pieskiem, kocha ludzi i umie chodzić na smyczy. Nauczony załatwiać swoje potrzeby tam gdzie powinien :)",
                         Status = "Szuka domu",
                         Dostepnosc = true,
                         AddedDate = DateTime.Now,
@@ -121,7 +122,8 @@ namespace Schronisko.Data
                     new Animal
                     {
                         Name = "Niunia",
-                        Description = "Nieśmiała kotka, która unika kontaktu z nami. Początkowo większość czasu spędzała w kryjówce, obecnie lubi siedzieć lub leżeć w pobliżu innych mruczków z boksu i uważnie się nam przyglądać.",
+                        Description = "Nieśmiała kotka, która unika kontaktu z nami. Początkowo większość czasu spędzała w kryjówce, " +
+                        "obecnie lubi siedzieć lub leżeć w pobliżu innych mruczków z boksu i uważnie się nam przyglądać.",
                         Status = "Szuka domu",
                         Dostepnosc = true,
                         AddedDate = DateTime.Now,
@@ -270,11 +272,12 @@ namespace Schronisko.Data
                 var types = new List<UserFormQuestionType>
                 {  // planowane wartości: 'YesNo', 'YesNoOther', 'ChooseOne', 'ChooseMultiple', 'OpenQuestion'
                     new UserFormQuestionType { Name = "Tak/Nie", Active = true},
-                    new UserFormQuestionType { Name = "Tak/Nie/Inne", Active = false}, //aktualnie nie wspierana, do zaimplementowanie przy rozbudowie formularza
+                    new UserFormQuestionType { Name = "Tak/Nie/Inne", Active = false}, //aktualnie nie wspierana,
                     new UserFormQuestionType { Name = "Wybierz jedną opcję", Active = true},
                     new UserFormQuestionType { Name = "Wybierz wiele opcji", Active = true},
-                    new UserFormQuestionType { Name = "Pytanie otwarte", Active = false}, //aktualnie nie wspierana, do zaimplementowanie przy rozbudowie formularza
-                    
+                    new UserFormQuestionType { Name = "Pytanie otwarte", Active = false}, //aktualnie nie wspierana
+                                                                                          //do zaimplementowanie przy
+                                                                                          //rozbudowie formularza
                 };
                 dbContext.AddRange(types);
                 dbContext.SaveChanges();

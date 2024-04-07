@@ -66,7 +66,8 @@
                 @Html.DisplayFor(modelItem => item.Dostepnosc)
             </td>
             <td>
-                <img src="@Url.Content(item.Photo == null ? "~/graphic/animals/brak.jpg" :"~/graphic/animals/"+item.Photo)" width="150" alt=item.Animal.Name />
+                <img src="@Url.Content(item.Photo == null ? "~/graphic/animals/brak.jpg" :"~/graphic/animals/"+item.Photo)"
+                width="150" alt=item.Animal.Name />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AddedDate)
