@@ -20,14 +20,10 @@ namespace Schronisko.Models
         [MaxLength(550, ErrorMessage = "Opis zwierzęcia nie może być dłuższe niż 550 znaków.")]
         public string? Description { get; set; }
 
-        //[Required(ErrorMessage = "Proszę podać gatunek zwierzęcia: ")]
-        //[Display(Name = "Gatunek zwierzęcia: ")]
-        //public string? Type { get; set; }
         [Required(ErrorMessage = "Proszę podać gatunek zwierzęcia: ")]
         [Display(Name = "Gatunek zwierzęcia: ")]
         [DefaultValue(1)]
         public int AnimalTypeID { get; set; }
-        // Komentowany news
         [ForeignKey("AnimalTypeID")]
         public virtual AnimalType? AnimalType { get; set; }
 
@@ -39,9 +35,6 @@ namespace Schronisko.Models
         [Display(Name = "Czy dostępne? ")]
         [DefaultValue(true)]
         public bool Dostepnosc { get; set; }
-
-/*        [Display(Name = "Opiekun:")]
-        public string? Id { get; set; }*/
 
         //Pracownik opiekun zwierzęcia
         [ForeignKey("Id")]
@@ -66,23 +59,6 @@ namespace Schronisko.Models
         public virtual List<Comment>? Comments { get; set; }
     }
 
-    /* public enum TypeOfAnimal
-     {
-         inny = 3,
-         kot = 2,
-         pies = 1,
-     }
-
-     public enum AnimalStatus
-     {
-         adopcjaZakonczona = 6,
-         adoptowanyOkresProbny = 5,
-         wTrakcieAdopcji = 4,
-         doAdopcji = 3,
-         wTrakcieBadanIPrzygotowania = 2,
-         oczekujeNaPrzyjecie = 1,
-     }*/
-
     public class AnimalType
     {
         [Key]
@@ -93,8 +69,5 @@ namespace Schronisko.Models
         [Display(Name = "Nazwa typu zwierzęcia: ")]
         [MaxLength(20, ErrorMessage = "Nazwa typu zwierzęcia nie może być dłuższe niż 20 znaków.")]
         public string? Name { get; set; }
-
-        //lista wszystkich zwierzat danego typu
-        //public virtual List<Animal>? Animals { get; set; }
     }
 }

@@ -1,8 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
-using System.Xml.Linq;
-using Microsoft.AspNetCore.Identity;
 
 namespace Schronisko.Models
 {
@@ -46,11 +44,4 @@ namespace Schronisko.Models
         //lista wszystkich komentarzy newsa
         public virtual List<Comment>? Comments { get; set; }
     }
-
-/*    public enum NewsStatus
-    {
-        archiwalne = 3, //news w tym statusie nie jest już wyświetlany gościom strony i jest widoczny tylko na liście dla administratorów
-        widoczne = 2, //news wyświelany gościom strony
-        robocze = 1, //news w trakcie przygotowania, nie jest jeszcze wyświelany
-    }*/
 }

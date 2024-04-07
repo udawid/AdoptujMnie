@@ -38,11 +38,6 @@ namespace Schronisko.Models
         [ForeignKey("UserFormQuestionTypeID")]
         public virtual UserFormQuestionType? QuestionType { get; set; }
 
-        //[Required]
-        //[Display(Name = "Czy aktywna? ")]
-        //[DefaultValue(true)]
-        //public bool Active { get; set; }
-
         [Display(Name = "Autor pytania:")]
         public string? Id { get; set; }
         //Id użytkownika tworzącego ankietę

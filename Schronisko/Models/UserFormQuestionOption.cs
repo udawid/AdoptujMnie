@@ -26,16 +26,6 @@ namespace Schronisko.Models
         [MaxLength(250, ErrorMessage = "Treść opcji nie może być dłuższe niż 250 znaków.")]
         public string? OptionText { get; set; }
 
-        ////dodatkowy opis dostępny tylko dla administratora
-        //[Display(Name = "Dodatkowy opis odpowiedzi: ")]
-        //[MaxLength(550, ErrorMessage = "Opis odpowiedzi nie może być dłuższe niż 550 znaków.")]
-        //public string? Description { get; set; }
-
-        //[Required]
-        //[Display(Name = "Czy aktywna? ")]
-        //[DefaultValue(true)]
-        //public bool Active { get; set; }
-
         [Display(Name = "Czy dyskwalifikująca? ")]
         [DefaultValue(false)]
         public bool Disqualifying { get; set; }

@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
-using System.Xml.Linq;
 
 namespace Schronisko.Models
 {
@@ -49,20 +48,4 @@ namespace Schronisko.Models
         //lista wszystkich komentarzy ogłoszenia
         public virtual List<Comment>? Comments { get; set; }
     }
-
- /*   public enum TypeOfAnnouncement
-    {
-        inne = 4,
-        poszukuje = 3, //np. jeśli ktoś poszukuje karmy dla zwierzaków
-        znalezionoZwierze = 2,
-        zagineloZwierze = 1,
-    }
-
-    public enum AnnouncementStatus
-    {
-        usuniete = 4, //administrator może zmienić status ogłoszenia na 'zamknięte' w dowolnym momencie
-        zamkniete = 3, //autor ogłoszenia może sam zmienić status na 'zamknięte' jeśli np. zwierze zostało odnalezione
-        aktywne = 2, //po zatwierdzeniu przed administratora ogłoszenie przechodzi ze statusu 'oczekujeNaWeryfikacje' na 'aktywne' i zostaje wyświetlone na liście ogłoszeń
-        oczekujeNaWeryfikacje = 1, //nowe ogłoszenie dostaje status 'oczekujeNaWeryfikacje' i nie jest wyświetlane
-    }*/
 }

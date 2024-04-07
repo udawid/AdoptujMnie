@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Schronisko.Models.Animal">
+    <Position X="1" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAEAAAgAKABAAAAAAQAAABAAAAMAAgAAAAAIAA=</HashCode>
+      <FileName>Models\Animal.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="AnimalType" />
+      <Property Name="User" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Schronisko.Models.AnimalType">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Animal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Schronisko.Models.Announcement">
+    <Position X="1.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>iAADAAAEAAAAAGAAAAAAAAAAAAAAAAAAAQgAAAAAIAA=</HashCode>
+      <FileName>Models\Announcement.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="User" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Schronisko.Models.AppUser">
+    <Position X="5.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEEAAAAAAAIAAAAAQAAAAAAAAAAAAAAAAAAAAIAg=</HashCode>
+      <FileName>Models\AppUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Schronisko.Models.Comment">
+    <Position X="3.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEDAAAABABgACAAAAAAAAAAAAIAAAAgIAhAAAAAAAA=</HashCode>
+      <FileName>Models\Comment.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Animal" />
+      <Property Name="Announcement" />
+      <Property Name="News" />
+      <Property Name="User" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Schronisko.Models.News">
+    <Position X="4.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAEAAAgAGAAAAAAAAAAAAAAAAAAAAgAAAEAIAA=</HashCode>
+      <FileName>Models\News.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Schronisko.Models.ResponseUserForm">
+    <Position X="7" Y="5.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAADAAACABIAgAAAAAAACAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Models\ResponseUserForm.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="User" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Schronisko.Models.ResponseUserFormQuestion">
+    <Position X="10" Y="5.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAASAAAAAAAAAAAAAAAAIACAAAAA=</HashCode>
+      <FileName>Models\ResponseUserFormQuestion.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ResponseForm" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Schronisko.Models.ResponseUserFormQuestionOption">
+    <Position X="13.75" Y="5.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAACAAAQAAAAAAAAAAAAAIAAAIAAAAAA=</HashCode>
+      <FileName>Models\ResponseUserFormQuestionOption.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ResponseQuestion" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Schronisko.Models.UserForm">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADACAAAABgAEgAAAAACAQAAAAAAAAkAAgAAAAAAAA=</HashCode>
+      <FileName>Models\UserForm.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="FormType" />
+      <Property Name="User" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Schronisko.Models.UserFormType">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAQAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Models\UserForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Schronisko.Models.UserFormQuestion">
+    <Position X="10.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAADAABAAAAgAAAAgACACAAICAAAAAAAAAgAAAFAAAA=</HashCode>
+      <FileName>Models\UserFormQuestion.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="QuestionType" />
+      <Property Name="Form" />
+      <Property Name="User" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Schronisko.Models.UserFormQuestionType">
+    <Position X="10.25" Y="3.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQIAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Models\UserFormQuestion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Schronisko.Models.UserFormQuestionOption">
+    <Position X="13" Y="0.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAAAAgAAAAACgQAAAAAAAAAAEIAgAAAAAAIA=</HashCode>
+      <FileName>Models\UserFormQuestionOption.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Question" />
+      <Property Name="User" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
